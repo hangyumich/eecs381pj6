@@ -35,24 +35,38 @@ void Grid_view::update_remove(const string& name) {
     memory.erase(name);
 }
 
-// Print size, scale, and origin
-void Grid_view::print_map_info() const {
-    cout << "Display size: " << size << ", scale: " << scale
-    << ", origin: " << origin << endl;
+// draw the grid map
+void Grid_view::draw() const {
+    vector<vector<string>> grid_map = get_initial_map();
+    vector<string> outsider;
+    for (const auto& object : memory) {
+        Point location = get_relative_location(object.second);
+        string name = object.first;
+        int ix, iy;
+        if (!get_subscripts(ix, iy, location))
+            outsider.push_back(name);
+        else
+            update_map(grid_map, ix, iy, name);
+    }
+    
+    print_map_info(outsider);
+    
+    // start drawing map
+    for (int y_index = (int)grid_map[0].size() - 1; y_index >= 0; --y_index) {
+        draw_y_label(y_index);
+        for (int x_index = 0; x_index < get_size(); ++x_index)
+            cout << grid_map[x_index][y_index];
+        cout << endl;
+    }
+    
+    // draw x label
+    for (int x_index = 0; x_index < get_size(); x_index += 3) {
+        cout << "  ";
+        print_label(x_index, "x");
+    }
+    cout << endl;
 }
 
-/* Setter function */
-void Grid_view::set_size(double size_) {
-    size = size_;
-}
-
-void Grid_view::set_scale(double scale_) {
-    scale = scale_;
-}
-
-void Grid_view::set_origin(Point origin_) {
-    origin = origin_;
-}
 
 /* Calculate the cell subscripts corresponding to the supplied location parameter,
  using the current size, scale, and origin of the display.
@@ -74,8 +88,35 @@ bool Grid_view::get_subscripts(int &ix, int &iy, Point location) const
         return true;
 }
 
+// Print size, scale, and origin
+void Grid_view::print_map_info(vector<string> outsider) const {
+    cout << "Display size: " << size << ", scale: " << scale
+         << ", origin: " << origin << endl;
+}
+
+// Given a map, update the map at (ix, iy) using name.
+void Grid_view::update_map(vector<vector<string>>& grid_map,
+                int ix, int iy, const std::string& name) const {
+    grid_map[ix][iy] = (grid_map[ix][iy] == ". " ? name.substr(0, 2) : "* ");
+}
+
+/* Setter function */
+void Grid_view::set_size(double size_) {
+    size = size_;
+}
+
+void Grid_view::set_scale(double scale_) {
+    scale = scale_;
+}
+
+void Grid_view::set_origin(Point origin_) {
+    origin = origin_;
+}
+
+
+
 // Change output stream setting and print out the label value.
-void Grid_view::print_label(int index , string axis) const {
+void Grid_view::print_label(int index , const string& axis) const {
     double label_value = index * scale;
     if (axis == "x")
         label_value += origin.x;
@@ -118,99 +159,54 @@ void Bridge_view::update_remove(const string& name) {
         is_sunk = true;
 }
 
-// draw water pattern if ship is sunk. Otherwise, draw map looking over from ship bow */
-void Bridge_view::draw() const {
-    // Start drawing map
-    vector<vector<string>> grid_map(get_size(), vector<string>(3, is_sunk ? "w-" : ". "));
+// Print size, scale, and origin
+void Bridge_view::print_map_info(vector<string> outsider) const {
     cout << "Bridge view from " << ship_name;
-    if (is_sunk) {
+    if (is_sunk)
         cout << " sunk at " << ship_location << endl;
-    } else {
+    else
         cout << " position " << ship_location << " heading " << ship_heading << endl;
-        for (const auto& object : get_memory()) {
-            double distance = cartesian_distance(ship_location, object.second);
-            if (distance < 0.005 || distance > 20)
-                continue;
-            double bearing = Compass_position(ship_location, object.second).bearing;
-            bearing -= ship_heading;
-            if (bearing < -180.)
-                bearing += 360.;
-            else if (bearing > 180.)
-                bearing -= 360;
-            int ix, iy;
-            if (!get_subscripts(ix, iy, Point{bearing, 0}))
-                continue;
-            grid_map[ix][iy] = (grid_map[ix][iy] == ". " ? object.first.substr(0, 2) : "* ");
-        }
-    }
-    
-    for (int y = (int)grid_map[0].size() - 1; y >= 0; --y) {
-        cout << "     ";
-        for (int x = 0; x < get_size(); ++x)
-            cout << grid_map[x][y];
-        cout << endl;
-    }
-    
-    cout << "  ";
-    for (int x_index = 0; x_index < get_size(); x_index += 3) {
-        cout << (x_index != 0 ? "  " : "");
-        print_label(x_index, "x");
-    }
-    cout << endl;
+}
+
+// Transform ship's location to relative location in the map
+Point Bridge_view::get_relative_location(Point location) const {
+    double distance = cartesian_distance(ship_location, location);
+    // return origin - 1 to indicate not on map
+    if (distance < 0.005 || distance > 20)
+        return Point{get_origin().x - 1, 0};
+    double bearing = Compass_position(ship_location, location).bearing;
+    bearing -= ship_heading;
+    if (bearing < -180.)
+        bearing += 360.;
+    else if (bearing > 180.)
+        bearing -= 360;
+    return Point{bearing, 0};
 }
 
 
+// return an initialized grid map
+vector<vector<string>> Bridge_view::get_initial_map() const {
+    return vector<vector<string>>(get_size(), vector<string>(3, is_sunk ? "w-" : ". "));
+}
 
+// draw y label
+void Bridge_view::draw_y_label(int y_index) const {
+    cout << "     ";
+}
 
+// if ship is sunk, we don't need to update the grid map.
+void Bridge_view::update_map(vector<vector<string>>& grid_map,
+                           int ix, int iy, const std::string& name) const {
+    if (is_sunk)
+        return;
+    Grid_view::update_map(grid_map, ix, iy, name);
+}
 
 /* ****************** Map View Implementation *********************
  ****************************************************************** */
 
 Map_view::Map_view() :
 Grid_view(25, 2.0, Point(-10., -10.)){}
-
-// prints out the current map
-void Map_view::draw() const {
-    vector<vector<string>> grid_map(get_size(), vector<string>(get_size(), ". "));
-    vector<string> outsider;
-    for (const auto& object : get_memory()) {
-        int ix, iy;
-        string name = object.first;
-        Point location = object.second;
-        if (!get_subscripts(ix, iy, location))
-            outsider.push_back(name);
-        else
-            grid_map[ix][iy] = (grid_map[ix][iy] == ". " ? name.substr(0, 2) : "* ");
-    }
-    
-    // print out map information
-    print_map_info();
-    for (auto iter = outsider.begin(); iter != outsider.end(); ++iter)
-        cout << (iter != outsider.begin() ? ", " : "") << *iter;
-    if (!outsider.empty())
-        cout << " outside the map" << endl;
-    
-    // start drawing map
-    for (int y_index = get_size() - 1; y_index >= 0; --y_index) {
-        // draw ylabel
-        if (y_index % 3 == 0) {
-            print_label(y_index, "y");
-            cout << " ";
-        } else {
-            cout << "     ";
-        }
-        for (int x_index = 0; x_index < get_size(); ++x_index)
-            cout << grid_map[x_index][y_index];
-        cout << endl;
-    }
-    // draw x label
-    cout << "  ";
-    for (int x_index = 0; x_index < get_size(); x_index += 3) {
-        cout << (x_index != 0 ? "  " : "");
-        print_label(x_index, "x");
-    }
-    cout << endl;
-}
 
 void Map_view::set_size(int size_) {
     if (size_ <= 6)
@@ -236,7 +232,35 @@ void Map_view::set_defaults() {
     Grid_view::set_origin(Point(-10., -10.));
 }
 
+// print out the text info before the real grid map.
+void Map_view::print_map_info(vector<string> outsider) const {
+    cout << "Display size: " << get_size() << ", scale: " << get_scale()
+         << ", origin: " << get_origin() << endl;
+    for (auto iter = outsider.begin(); iter != outsider.end(); ++iter)
+        cout << (iter != outsider.begin() ? ", " : "") << *iter;
+    if (!outsider.empty())
+        cout << " outside the map" << endl;
+}
 
+// ship's relative location does not change in Map view
+Point Map_view::get_relative_location(Point location) const {
+    return location;
+}
+
+// print y label
+void Map_view::draw_y_label(int y_index) const {
+    if (y_index % 3 == 0) {
+        print_label(y_index, "y");
+        cout << " ";
+    } else {
+        cout << "     ";
+    }
+}
+
+// return an initialized grid map
+vector<vector<string>> Map_view::get_initial_map() const {
+    return vector<vector<string>>(get_size(), vector<string>(get_size(), ". "));
+}
 
 /* ****************** Sailing View Implementation *********************
  ****************************************************************** */

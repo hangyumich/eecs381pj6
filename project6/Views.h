@@ -4,6 +4,7 @@
 #include "View.h"
 
 #include <map>
+#include <vector>
 #include <string>
 
 struct Point;
@@ -19,15 +20,16 @@ public:
     // Remove the name and its location; no error if the name is not present.
     void update_remove(const std::string& name) override;
     
+    // draw the grid map
+    void draw() const override;
+    
 protected:
     Grid_view(int size_, double scale_, Point origin_);
     
     /* Getter and Setter */
-    const std::map<std::string, Point>& get_memory() const
-    { return memory; }
-    
-    double get_size() const
-    { return size; }
+    int get_size() const { return size; }
+    double get_scale() const { return scale; }
+    Point get_origin() const { return origin; }
     
     void set_size(double size_);
     void set_scale(double scale_);
@@ -36,9 +38,13 @@ protected:
     
     /* Helper Function */
     bool get_subscripts(int &ix, int &iy, Point location) const;
-    void print_map_info() const;
-    void print_x_axis() const;
-    void print_label(int index, std::string axis) const;
+    virtual std::vector<std::vector<std::string>> get_initial_map() const = 0;
+    virtual void print_map_info(std::vector<std::string> outsider) const = 0;
+    virtual Point get_relative_location(Point location) const = 0;
+    virtual void update_map(std::vector<std::vector<std::string>>& grid_map,
+                            int ix, int iy, const std::string& name) const;
+    virtual void draw_y_label(int y_index) const = 0;
+    void print_label(int index, const std::string& axis) const;
 private:
     int size;			// current size of the display
     double scale;		// distance per cell of the display
@@ -64,10 +70,16 @@ public:
     // Update view to sunk view.
     void update_remove(const std::string& name) override;
     
-    // prints out the current map
-    void draw() const override;
-    
 private:
+    /* Helper Function */
+    void print_map_info(std::vector<std::string> outsider) const override;
+    Point get_relative_location(Point location) const override;
+    std::vector<std::vector<std::string>> get_initial_map() const override;
+    void draw_y_label(int y_index) const override;
+    void update_map(std::vector<std::vector<std::string>>& grid_map,
+                    int ix, int iy, const std::string& name) const override;
+    
+    /* Private Member Variables */
     std::string ship_name;
     Point ship_location;
     double ship_heading = 0.;
@@ -84,9 +96,6 @@ public:
     // default constructor sets the default size, scale, and origin
     Map_view();
     
-    // prints out the current map
-    void draw() const override;
-    
     // modify the display parameters
     // if the size is out of bounds will throw Error("New map size is too big!")
     // or Error("New map size is too small!")
@@ -100,18 +109,23 @@ public:
     
     // set the parameters to the default values
     void set_defaults();
+    
+private:
+    /* Helper Function */
+    void print_map_info(std::vector<std::string> outsider) const override;
+    Point get_relative_location(Point location) const override;
+    void draw_y_label(int y_index) const override;
+    std::vector<std::vector<std::string>> get_initial_map() const override;
 };
 
+/* ********************** Sailing View Interface *********************
+ ****************************************************************** */
 
 struct Data {
     double fuel;
     double course;
     double speed;
 };
-
-
-/* ********************** Sailing View Interface *********************
- ****************************************************************** */
 
 class Sailing_view : public View {
 public:

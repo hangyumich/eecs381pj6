@@ -14,6 +14,8 @@ struct Point;
 
 class View {
 public:
+    virtual ~View() {}
+    
 	// Remove the name and its location; no error if the name is not present.
     virtual void update_remove(const std::string& name) = 0;
     

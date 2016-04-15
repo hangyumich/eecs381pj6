@@ -13,7 +13,7 @@
 		8BFD5D921CBFBBC80040EC2B /* Island.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D761CBFBBC80040EC2B /* Island.cpp */; };
 		8BFD5D931CBFBBC80040EC2B /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D781CBFBBC80040EC2B /* Model.cpp */; };
 		8BFD5D941CBFBBC80040EC2B /* Navigation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D7A1CBFBBC80040EC2B /* Navigation.cpp */; };
-		8BFD5D951CBFBBC80040EC2B /* p5_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D7C1CBFBBC80040EC2B /* p5_main.cpp */; };
+		8BFD5D951CBFBBC80040EC2B /* p6_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D7C1CBFBBC80040EC2B /* p6_main.cpp */; };
 		8BFD5D961CBFBBC80040EC2B /* Ship_factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D7D1CBFBBC80040EC2B /* Ship_factory.cpp */; };
 		8BFD5D971CBFBBC80040EC2B /* Ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D7F1CBFBBC80040EC2B /* Ship.cpp */; };
 		8BFD5D981CBFBBC80040EC2B /* Sim_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D811CBFBBC80040EC2B /* Sim_object.cpp */; };
@@ -52,7 +52,7 @@
 		8BFD5D791CBFBBC80040EC2B /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		8BFD5D7A1CBFBBC80040EC2B /* Navigation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Navigation.cpp; sourceTree = "<group>"; };
 		8BFD5D7B1CBFBBC80040EC2B /* Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigation.h; sourceTree = "<group>"; };
-		8BFD5D7C1CBFBBC80040EC2B /* p5_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p5_main.cpp; sourceTree = "<group>"; };
+		8BFD5D7C1CBFBBC80040EC2B /* p6_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = p6_main.cpp; sourceTree = "<group>"; };
 		8BFD5D7D1CBFBBC80040EC2B /* Ship_factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ship_factory.cpp; sourceTree = "<group>"; };
 		8BFD5D7E1CBFBBC80040EC2B /* Ship_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ship_factory.h; sourceTree = "<group>"; };
 		8BFD5D7F1CBFBBC80040EC2B /* Ship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ship.cpp; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 				8BFD5D791CBFBBC80040EC2B /* Model.h */,
 				8BFD5D7A1CBFBBC80040EC2B /* Navigation.cpp */,
 				8BFD5D7B1CBFBBC80040EC2B /* Navigation.h */,
-				8BFD5D7C1CBFBBC80040EC2B /* p5_main.cpp */,
+				8BFD5D7C1CBFBBC80040EC2B /* p6_main.cpp */,
 				8BFD5D7D1CBFBBC80040EC2B /* Ship_factory.cpp */,
 				8BFD5D7E1CBFBBC80040EC2B /* Ship_factory.h */,
 				8BFD5D7F1CBFBBC80040EC2B /* Ship.cpp */,
@@ -203,7 +203,7 @@
 				8BFD5D991CBFBBC80040EC2B /* Tanker.cpp in Sources */,
 				8BFD5D941CBFBBC80040EC2B /* Navigation.cpp in Sources */,
 				8BFD5D9D1CBFBBC80040EC2B /* Views.cpp in Sources */,
-				8BFD5D951CBFBBC80040EC2B /* p5_main.cpp in Sources */,
+				8BFD5D951CBFBBC80040EC2B /* p6_main.cpp in Sources */,
 				8BFD5D9C1CBFBBC80040EC2B /* View.cpp in Sources */,
 				8BFD5D9E1CBFBBC80040EC2B /* Warships.cpp in Sources */,
 				8BFD5D981CBFBBC80040EC2B /* Sim_object.cpp in Sources */,

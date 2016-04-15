@@ -86,7 +86,7 @@ void Controller::run() {
 
 // Given a cmd string, return the corresponding function ptr
 template<typename T>
-T Controller::get_func_ptr(map<string, T> cmds, string cmd_word) {
+T Controller::get_func_ptr(map<string, T> cmds, const string& cmd_word) {
     auto iter = cmds.find(cmd_word);
     if (iter == cmds.end())
         throw Error("Unrecognized command!");

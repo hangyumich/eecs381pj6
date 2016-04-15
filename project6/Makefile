@@ -4,16 +4,16 @@ LD = g++
 CFLAGS = -c -pedantic-errors -std=c++14 -Wall -fno-elide-constructors -g
 LFLAGS = -pedantic-errors -Wall
 
-OBJS = p5_main.o Controller.o Island.o Ship.o Tanker.o View.o Views.o Cruise_ship.o Warships.o Model.o Ship_factory.o Track_base.o Geometry.o Navigation.o Sim_object.o Utility.o
-PROG = p5exe
+OBJS = p6_main.o Controller.o Island.o Ship.o Tanker.o View.o Views.o Cruise_ship.o Warships.o Model.o Ship_factory.o Track_base.o Geometry.o Navigation.o Sim_object.o Utility.o
+PROG = p6exe
 
 default: $(PROG)
 
 $(PROG): $(OBJS) 
 	$(LD) $(LFLAGS) $(OBJS) -o $(PROG)
 
-p5_main.o: p5_main.cpp *.h
-	$(CC) $(CFLAGS) p5_main.cpp
+p6_main.o: p6_main.cpp *.h
+	$(CC) $(CFLAGS) p6_main.cpp
 
 Controller.o: Controller.cpp *.h
 	$(CC) $(CFLAGS) Controller.cpp

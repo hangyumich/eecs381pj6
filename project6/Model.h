@@ -41,9 +41,6 @@ struct Comp {
 
 class Model {
 public:
-	// create the initial objects.
-    Model();
-
 	// return the current time
 	int get_time() {return time;}
 
@@ -106,6 +103,10 @@ public:
     Model(Model&& other) = delete;
     Model& operator=(const Model& other) = delete;
 private:
+    // create the initial objects.
+    Model();
+    ~Model(){}
+    
 	int time;		// the simulated time
     std::map<std::string, std::shared_ptr<Sim_object>> objects;
     std::set<std::shared_ptr<Island>, Comp> islands;

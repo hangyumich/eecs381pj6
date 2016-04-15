@@ -32,7 +32,7 @@ private:
     std::map<std::string, std::shared_ptr<Bridge_view>> bridge_views;
     
     template<typename T>
-    T get_func_ptr(std::map<std::string, T> cmds, std::string cmd_word);
+    T get_func_ptr(std::map<std::string, T> cmds, const std::string& cmd_word);
 
     void quit_cmd();
     
