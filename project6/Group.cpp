@@ -9,6 +9,24 @@
 using std::shared_ptr;
 using std::for_each;
 using std::mem_fn;
+using std::find;
+
+/*********************** General Functions *********************************/
+void Group::add_member(shared_ptr<Commandable> member) {
+    if (find(members.begin(), members.end(), member) != members.end())
+        throw Error("A member with that name already exists");
+    members.push_back(member);
+}
+
+void Group::delete_member(std::shared_ptr<Commandable> member) {
+    auto iter = find(members.begin(), members.end(), member);
+    if (iter == members.end())
+        throw Error("No member with that name exists in the group");
+    members.erase(iter);
+}
+
+
+/******************** Commandable Interface Override **********************/
 
 // All members start moving on a course and speed
 void Group::set_course_and_speed(double course, double speed) {

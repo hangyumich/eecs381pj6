@@ -7,6 +7,7 @@
 #include "Ship.h"
 #include "Island.h"
 #include "Views.h"
+#include "Group.h"
 
 #include <iostream>
 #include <string>
@@ -24,7 +25,7 @@ using std::make_shared;
 
 // create View object, run the program by acccepting user commands, then destroy View object
 void Controller::run() {
-    map<string, void (Controller::*)(shared_ptr<Ship>)> ship_cmds {
+    map<string, void (Controller::*)(shared_ptr<Commandable>)> control_cmds {
         {"course", &Controller::course_cmd},
         {"position", &Controller::position_cmd},
         {"destination", &Controller::destination_cmd},
@@ -72,8 +73,8 @@ void Controller::run() {
             if (Model::get_instance().is_ship_present(first_word)) {
                 string cmd_word;
                 cin >> cmd_word;
-                shared_ptr<Ship> ship_ptr = Model::get_instance().get_ship_ptr(first_word);
-                (this->*get_func_ptr(ship_cmds, cmd_word))(ship_ptr);
+                auto commandable_ptr = get_commandable_object(first_word);
+                (this->*get_func_ptr(control_cmds, cmd_word))(commandable_ptr);
             } else {
                 (this->*get_func_ptr(cmds, first_word))();
             }
@@ -172,8 +173,7 @@ void Controller::close_sailing_view() {
 }
 
 void Controller::open_bridge_view() {
-    string ship_name;
-    cin >> ship_name;
+    string ship_name = read_string();
     auto ship_ptr = Model::get_instance().get_ship_ptr(ship_name);
     if (bridge_views.find(ship_name) != bridge_views.end())
         throw Error("Bridge view is already open for that ship!");
@@ -184,8 +184,7 @@ void Controller::open_bridge_view() {
 }
 
 void Controller::close_bridge_view() {
-    string ship_name;
-    cin >> ship_name;
+    string ship_name = read_string();
     auto iter = bridge_views.find(ship_name);
     if (iter == bridge_views.end())
         throw Error("Bridge view for that ship is not open!");
@@ -206,40 +205,73 @@ void Controller::go_cmd() {
 }
 
 void Controller::create_cmd() {
-    string ship_name;
-    cin >> ship_name;
+    string ship_name = read_string();
     if (ship_name.length() < 2)
         throw Error("Name is too short!");
     if (Model::get_instance().is_name_in_use(ship_name))
         throw Error("Name is invalid!");
-    string ship_type;
-    cin >> ship_type;
+    string ship_type = read_string();
     Point init_position{read_double(), read_double()};
     Model::get_instance().add_ship(create_ship(ship_name, ship_type, init_position));
 }
 
+/* Group Commands */
+void Controller::create_group_cmd() {
+    string group_name = read_string();
+    if (!Model::get_instance().is_group_name_valid(group_name))
+        throw Error("Group name is invalid!");
+    Model::get_instance().attach_group(make_shared<Group>(group_name));
+}
 
+void Controller::delete_group_cmd() {
+    string group_name = read_string();
+    auto group_ptr = Model::get_instance().get_group_ptr(group_name);
+    Model::get_instance().detach_group(group_ptr);
+}
 
-/* Ship Commands */
+void Controller::add_member_cmd() {
+    shared_ptr<Commandable> member = get_commandable_object(read_string());
+    shared_ptr<Group> group_ptr = Model::get_instance().get_group_ptr(read_string());
+    group_ptr->add_member(member);
+}
 
-void Controller::course_cmd(shared_ptr<Ship> ship_ptr) {
+void Controller::delete_member_cmd() {
+    shared_ptr<Commandable> member = get_commandable_object(read_string());
+    shared_ptr<Group> group_ptr = Model::get_instance().get_group_ptr(read_string());
+    group_ptr->delete_member(member);
+}
+
+/* Read a string from cin and get either a ship pointer or a group ptr.
+ Throw an error otherwise. */
+shared_ptr<Commandable> Controller::get_commandable_object(string name) {
+    if (Model::get_instance().is_ship_present(name))
+        return Model::get_instance().get_ship_ptr(name);
+    else if (Model::get_instance().is_group_present(name))
+        return Model::get_instance().get_group_ptr(name);
+    else
+        throw Error("Commandable object not found!");
+}
+
+/* Control Commands */
+
+void Controller::course_cmd(shared_ptr<Commandable> commandable_ptr) {
     double course = read_double();
     if (course < 0. || course >= 360.)
         throw Error("Invalid heading entered!");
     double speed = read_speed();
-    ship_ptr->set_course_and_speed(course, speed);
+    commandable_ptr->set_course_and_speed(course, speed);
 }
 
-void Controller::position_cmd(shared_ptr<Ship> ship_ptr) {
+void Controller::position_cmd(shared_ptr<Commandable> commandable_ptr) {
     Point destination{read_double(), read_double()};
     double speed = read_speed();
-    ship_ptr->set_destination_position_and_speed(destination, speed);
+    commandable_ptr->set_destination_position_and_speed(destination, speed);
 }
 
-void Controller::destination_cmd(shared_ptr<Ship> ship_ptr) {
+void Controller::destination_cmd(shared_ptr<Commandable> commandable_ptr) {
     shared_ptr<Island> island_ptr = read_and_get_island();
     double speed = read_speed();
-    ship_ptr->set_destination_island_and_speed(island_ptr, speed);
+    commandable_ptr->set_destination_island_and_speed(island_ptr, speed);
 }
 
 // Read in speed from cin. Throw Error if it's negative
@@ -258,44 +290,48 @@ double Controller::read_double() {
     return number;
 }
 
-void Controller::load_at_cmd(shared_ptr<Ship> ship_ptr) {
+void Controller::load_at_cmd(shared_ptr<Commandable> commandable_ptr) {
     shared_ptr<Island> island_ptr = read_and_get_island();
-    ship_ptr->set_load_destination(island_ptr);
+    commandable_ptr->set_load_destination(island_ptr);
 }
 
-void Controller::unload_at_cmd(shared_ptr<Ship> ship_ptr) {
+void Controller::unload_at_cmd(shared_ptr<Commandable> commandable_ptr) {
     shared_ptr<Island> island_ptr = read_and_get_island();
-    ship_ptr->set_unload_destination(island_ptr);
+    commandable_ptr->set_unload_destination(island_ptr);
 }
 
-void Controller::dock_at_cmd(shared_ptr<Ship> ship_ptr) {
+void Controller::dock_at_cmd(shared_ptr<Commandable> commandable_ptr) {
     shared_ptr<Island> island_ptr = read_and_get_island();
-    ship_ptr->dock(island_ptr);
+    commandable_ptr->dock(island_ptr);
 }
 
 // Read Island name from cin and find the corresponding island pointer.
 shared_ptr<Island> Controller::read_and_get_island() {
-    string island_name;
-    cin >>island_name;
+    string island_name = read_string();
     return Model::get_instance().get_island_ptr(island_name);
 }
 
-void Controller::attack_cmd(shared_ptr<Ship> ship_ptr) {
-    string ship_name;
-    cin >> ship_name;
+void Controller::attack_cmd(shared_ptr<Commandable> commandable_ptr) {
+    string ship_name = read_string();
     shared_ptr<Ship> target_ship = Model::get_instance().get_ship_ptr(ship_name);
-    ship_ptr->attack(target_ship);
+    commandable_ptr->attack(target_ship);
 }
 
-void Controller::refuel_cmd(shared_ptr<Ship> ship_ptr) {
-    ship_ptr->refuel();
+void Controller::refuel_cmd(shared_ptr<Commandable> commandable_ptr) {
+    commandable_ptr->refuel();
 }
 
-void Controller::stop_cmd(shared_ptr<Ship> ship_ptr) {
-    ship_ptr->stop();
+void Controller::stop_cmd(shared_ptr<Commandable> commandable_ptr) {
+    commandable_ptr->stop();
 }
 
-void Controller::stop_attack_cmd(shared_ptr<Ship> ship_ptr) {
-    ship_ptr->stop_attack();
+void Controller::stop_attack_cmd(shared_ptr<Commandable> commandable_ptr) {
+    commandable_ptr->stop_attack();
+}
+
+string Controller::read_string() {
+    string str;
+    cin >> str;
+    return str;
 }
 

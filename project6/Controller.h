@@ -17,6 +17,7 @@ class Island;
 class Map_view;
 class Sailing_view;
 class Bridge_view;
+class Commandable;
 
 class Controller {
 public:
@@ -63,21 +64,23 @@ private:
     void delete_member_cmd();
     
     /* Ship Command Function */
-    void course_cmd(std::shared_ptr<Ship>);
-    void position_cmd(std::shared_ptr<Ship>);
-    void destination_cmd(std::shared_ptr<Ship>);
-    void load_at_cmd(std::shared_ptr<Ship>);
-    void unload_at_cmd(std::shared_ptr<Ship>);
-    void dock_at_cmd(std::shared_ptr<Ship>);
-    void attack_cmd(std::shared_ptr<Ship>);
-    void refuel_cmd(std::shared_ptr<Ship>);
-    void stop_cmd(std::shared_ptr<Ship>);
-    void stop_attack_cmd(std::shared_ptr<Ship>);
+    void course_cmd(std::shared_ptr<Commandable>);
+    void position_cmd(std::shared_ptr<Commandable>);
+    void destination_cmd(std::shared_ptr<Commandable>);
+    void load_at_cmd(std::shared_ptr<Commandable>);
+    void unload_at_cmd(std::shared_ptr<Commandable>);
+    void dock_at_cmd(std::shared_ptr<Commandable>);
+    void attack_cmd(std::shared_ptr<Commandable>);
+    void refuel_cmd(std::shared_ptr<Commandable>);
+    void stop_cmd(std::shared_ptr<Commandable>);
+    void stop_attack_cmd(std::shared_ptr<Commandable>);
     
     /* Auxiliary Function */
+    std::shared_ptr<Commandable> get_commandable_object(std::string name);
     std::shared_ptr<Island> read_and_get_island();
     double read_speed();
     double read_double();
+    std::string read_string();
 };
 	
 #endif

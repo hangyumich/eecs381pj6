@@ -26,6 +26,7 @@ Model also provides facilities for looking up objects given their name.
 class Sim_object;
 class Ship;
 class View;
+class Group;
 class Island;
 struct Point;
 
@@ -41,15 +42,29 @@ struct Comp {
 
 class Model {
 public:
-	// return the current time
-	int get_time() {return time;}
 
-	// is name already in use for either ship or island?
-    // either the identical name, or identical in first two characters counts as in-use
+    /*************************** General Functions ****************************/
+    
+    // get the singleton model object
+    static Model& get_instance();
+    
+    // return the current time
+    int get_time() {return time;}
+    
+    // disallow copy/move construction or assignment
+    Model(const Model& other) = delete;
+    Model(Model&& other) = delete;
+    Model& operator=(const Model& other) = delete;
+    
+    /*********************** Ship and Islands Functions **********************/
+    
+	/* is name already in use for either ship or island?
+     either the identical name, or identical in first two characters counts as in-use */
 	bool is_name_in_use(const std::string& name) const;
 
 	// is there such an island?
 	bool is_island_present(const std::string& name) const;
+    
 	// will throw Error("Island not found!") if no island of that name
     std::shared_ptr<Island> get_island_ptr(const std::string& name) const;
     
@@ -69,10 +84,33 @@ public:
 	// increment the time, and tell all objects to update themselves
 	void update();	
 	
-	/* View services */
+    
+    /************************** Group Functions *******************************/
+    
+    // Test whether the group name has already been used by other ships, islands
+    // or groups.
+    bool is_group_name_valid(const std::string& group_name) const;
+    
+    // Test wheter a group exists with given name.
+    bool is_group_present(const std::string& group_name) const;
+    
+    // get group pointer. Throw an error if no group with that name exists.
+    std::shared_ptr<Group> get_group_ptr(const std::string& group_name) const;
+    
+    // Attach a group to the container
+    void attach_group(std::shared_ptr<Group>);
+    
+    // Detach the group from the container
+    void detach_group(std::shared_ptr<Group>);
+    
+    
+    
+	/****************************** View Functions *****************************/
+    
 	// Attaching a View adds it to the container and causes it to be updated
     // with all current objects'location (or other state information.
     void attach(std::shared_ptr<View>);
+    
 	// Detach the View by discarding the supplied pointer from the container of Views
     // - no updates sent to it thereafter.
     void detach(std::shared_ptr<View>);
@@ -95,13 +133,6 @@ public:
 	// notify the views that an object is now gone
 	void notify_gone(const std::string& name);
 
-    // get the singleton model object
-    static Model& get_instance();
-    
-	// disallow copy/move construction or assignment
-    Model(const Model& other) = delete;
-    Model(Model&& other) = delete;
-    Model& operator=(const Model& other) = delete;
 private:
     // create the initial objects.
     Model();
@@ -112,6 +143,7 @@ private:
     std::set<std::shared_ptr<Island>, Comp> islands;
     std::set<std::shared_ptr<Ship>, Comp> ships;
     std::forward_list<std::shared_ptr<View>> views;
+    std::map<std::string, std::shared_ptr<Group>> groups;
 };
 
 #endif
