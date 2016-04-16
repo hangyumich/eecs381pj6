@@ -188,19 +188,19 @@ void Ship::refuel() {
 
 /*** Fat interface command functions ***/
 void Ship::set_load_destination(shared_ptr<Island> island_ptr) {
-    throw Error("Cannot load at a destination!");
+    throw Not_have_ability("Cannot load at a destination!");
 }
 
 void Ship::set_unload_destination(shared_ptr<Island>) {
-    throw Error("Cannot unload at a destination!");
+    throw Not_have_ability("Cannot unload at a destination!");
 }
 
 void Ship::attack(shared_ptr<Ship> in_target_ptr) {
-    throw Error("Cannot attack!");
+    throw Not_have_ability("Cannot attack!");
 }
 
 void Ship::stop_attack() {
-    throw Error("Cannot attack!");
+    throw Not_have_ability("Cannot attack!");
 }
 
 /* interactions with other objects. Receive a hit from an attacker */

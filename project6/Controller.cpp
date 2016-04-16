@@ -37,7 +37,7 @@ void Controller::run() {
         {"stop_attack", &Controller::stop_attack_cmd}
     };
     
-    map<string, void (Controller::*)()> view_model_cmds {
+    map<string, void (Controller::*)()> cmds {
         {"default", &Controller::default_cmd},
         {"size", &Controller::size_cmd},
         {"zoom", &Controller::zoom_cmd},
@@ -46,6 +46,10 @@ void Controller::run() {
         {"status", &Controller::status_cmd},
         {"go", &Controller::go_cmd},
         {"create", &Controller::create_cmd},
+        {"create_group", &Controller::create_group_cmd},
+        {"delete_group", &Controller::delete_group_cmd},
+        {"add_member", &Controller::add_member_cmd},
+        {"delete_member", &Controller::delete_member_cmd},
         {"open_map_view", &Controller::open_map_view_cmd},
         {"close_map_view", &Controller::close_map_view_cmd},
         {"open_sailing_view", &Controller::open_sailing_view},
@@ -64,13 +68,14 @@ void Controller::run() {
             if (first_word == "quit") {
                 quit_cmd();
                 return;
-            } else if (Model::get_instance().is_ship_present(first_word)) {
+            }
+            if (Model::get_instance().is_ship_present(first_word)) {
                 string cmd_word;
                 cin >> cmd_word;
                 shared_ptr<Ship> ship_ptr = Model::get_instance().get_ship_ptr(first_word);
                 (this->*get_func_ptr(ship_cmds, cmd_word))(ship_ptr);
             } else {
-                (this->*get_func_ptr(view_model_cmds, first_word))();
+                (this->*get_func_ptr(cmds, first_word))();
             }
         } catch (Error& error) {
             cout << error.what() << endl;

@@ -2,6 +2,7 @@
 #define SHIP_H
 
 #include "Sim_object.h"
+#include "Commandable.h"
 #include "Track_base.h"
 
 #include <memory>
@@ -27,7 +28,7 @@ enum class Ship_state;
 
 class Island;
 
-class Ship : public Sim_object, public std::enable_shared_from_this<Ship>{
+class Ship : public Sim_object, public Commandable, public std::enable_shared_from_this<Ship>{
 public:
 	/*** Readers ***/
 	// return the current position
@@ -56,46 +57,55 @@ public:
 	void describe() const override;
 	
 	void broadcast_current_state()  const override;
+    
+    // interactions with other objects
+    // receive a hit from an attacker
+    virtual void receive_hit(int hit_force, std::shared_ptr<Ship> attacker_ptr);
 	
+    
 	/*** Command functions ***/
+    
 	// Start moving to a destination position at a speed
      // may throw Error("Ship cannot move!")
      // may throw Error("Ship cannot go that fast!")
-	virtual void set_destination_position_and_speed(Point destination_position, double speed);
+	void set_destination_position_and_speed(Point destination_position, double speed) override;
+    
 	// Start moving to a destination Island at a speed
      // may throw Error("Ship cannot move!")
      // may throw Error("Ship cannot go that fast!")
-    virtual void set_destination_island_and_speed(std::shared_ptr<Island> destination_island,
-                                                  double speed);
+    void set_destination_island_and_speed(std::shared_ptr<Island> destination_island,
+                                          double speed) override;
 	// Start moving on a course and speed
      // may throw Error("Ship cannot move!")
      // may throw Error("Ship cannot go that fast!");
-	virtual void set_course_and_speed(double course, double speed);
+    void set_course_and_speed(double course, double speed) override;
+    
 	// Stop moving
      // may throw Error("Ship cannot move!");
-	virtual void stop();
+    void stop() override;
+    
 	// dock at an Island - set our position = Island's position, go into Docked state
      // may throw Error("Can't dock!");
-    virtual void dock(std::shared_ptr<Island> island_ptr);
+    void dock(std::shared_ptr<Island> island_ptr) override;
+    
 	// Refuel - must already be docked at an island; fill takes as much as possible
      // may throw Error("Must be docked!");
-	virtual void refuel();
+	void refuel() override;
 
 	/*** Fat interface command functions ***/
 	// These functions throw an Error exception for this class
     // will always throw Error("Cannot load at a destination!");
-    virtual void set_load_destination(std::shared_ptr<Island>);
+    void set_load_destination(std::shared_ptr<Island>) override;
+    
     // will always throw Error("Cannot unload at a destination!");
-    virtual void set_unload_destination(std::shared_ptr<Island>);
+    void set_unload_destination(std::shared_ptr<Island>) override;
+    
     // will always throw Error("Cannot attack!");
-    virtual void attack(std::shared_ptr<Ship> in_target_ptr);
+    void attack(std::shared_ptr<Ship> target_ptr) override;
+    
     // will always throw Error("Cannot attack!");
-	virtual void stop_attack();
-
-	// interactions with other objects
-	// receive a hit from an attacker
-    virtual void receive_hit(int hit_force, std::shared_ptr<Ship> attacker_ptr);
-
+    void stop_attack() override;
+    
 protected:
     // Make constructor protected so that client cannot create this object.
     Ship(const std::string& name_, Point position_, double fuel_capacity_,

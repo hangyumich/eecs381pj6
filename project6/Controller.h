@@ -56,6 +56,12 @@ private:
     void go_cmd();
     void create_cmd();
     
+    /* Group Command Function */
+    void create_group_cmd();
+    void delete_group_cmd();
+    void add_member_cmd();
+    void delete_member_cmd();
+    
     /* Ship Command Function */
     void course_cmd(std::shared_ptr<Ship>);
     void position_cmd(std::shared_ptr<Ship>);

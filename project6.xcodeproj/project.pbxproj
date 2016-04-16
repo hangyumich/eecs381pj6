@@ -23,6 +23,8 @@
 		8BFD5D9C1CBFBBC80040EC2B /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D891CBFBBC80040EC2B /* View.cpp */; };
 		8BFD5D9D1CBFBBC80040EC2B /* Views.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D8B1CBFBBC80040EC2B /* Views.cpp */; };
 		8BFD5D9E1CBFBBC80040EC2B /* Warships.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D8D1CBFBBC80040EC2B /* Warships.cpp */; };
+		8BFD5DA11CC15F120040EC2B /* Commandable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D9F1CC15F120040EC2B /* Commandable.cpp */; };
+		8BFD5DA41CC166DD0040EC2B /* Group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5DA21CC166DD0040EC2B /* Group.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -71,6 +73,10 @@
 		8BFD5D8C1CBFBBC80040EC2B /* Views.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Views.h; sourceTree = "<group>"; };
 		8BFD5D8D1CBFBBC80040EC2B /* Warships.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Warships.cpp; sourceTree = "<group>"; };
 		8BFD5D8E1CBFBBC80040EC2B /* Warships.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warships.h; sourceTree = "<group>"; };
+		8BFD5D9F1CC15F120040EC2B /* Commandable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Commandable.cpp; sourceTree = "<group>"; };
+		8BFD5DA01CC15F120040EC2B /* Commandable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commandable.h; sourceTree = "<group>"; };
+		8BFD5DA21CC166DD0040EC2B /* Group.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Group.cpp; sourceTree = "<group>"; };
+		8BFD5DA31CC166DD0040EC2B /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,10 @@
 				8BFD5D8C1CBFBBC80040EC2B /* Views.h */,
 				8BFD5D8D1CBFBBC80040EC2B /* Warships.cpp */,
 				8BFD5D8E1CBFBBC80040EC2B /* Warships.h */,
+				8BFD5D9F1CC15F120040EC2B /* Commandable.cpp */,
+				8BFD5DA01CC15F120040EC2B /* Commandable.h */,
+				8BFD5DA21CC166DD0040EC2B /* Group.cpp */,
+				8BFD5DA31CC166DD0040EC2B /* Group.h */,
 			);
 			path = project6;
 			sourceTree = "<group>";
@@ -196,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BFD5D9B1CBFBBC80040EC2B /* Utility.cpp in Sources */,
+				8BFD5DA41CC166DD0040EC2B /* Group.cpp in Sources */,
 				8BFD5D921CBFBBC80040EC2B /* Island.cpp in Sources */,
 				8BFD5D911CBFBBC80040EC2B /* Geometry.cpp in Sources */,
 				8BFD5D9A1CBFBBC80040EC2B /* Track_base.cpp in Sources */,
@@ -203,6 +214,7 @@
 				8BFD5D991CBFBBC80040EC2B /* Tanker.cpp in Sources */,
 				8BFD5D941CBFBBC80040EC2B /* Navigation.cpp in Sources */,
 				8BFD5D9D1CBFBBC80040EC2B /* Views.cpp in Sources */,
+				8BFD5DA11CC15F120040EC2B /* Commandable.cpp in Sources */,
 				8BFD5D951CBFBBC80040EC2B /* p6_main.cpp in Sources */,
 				8BFD5D9C1CBFBBC80040EC2B /* View.cpp in Sources */,
 				8BFD5D9E1CBFBBC80040EC2B /* Warships.cpp in Sources */,
