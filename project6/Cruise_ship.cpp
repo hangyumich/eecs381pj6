@@ -1,6 +1,7 @@
 #include "Cruise_ship.h"
 #include "Island.h"
 #include "Model.h"
+#include "Utility.h"
 
 #include <string>
 #include <memory>
@@ -23,6 +24,18 @@ enum class Cruise_state {not_cruising, moving_to_destination, refueling,
 Cruise_ship::Cruise_ship(const string& name_, Point position_) :
 Ship(name_, position_, 500., 15., 2., 0), cruise_state(Cruise_state::not_cruising) {}
 
+Cruise_ship::Cruise_ship(std::istream& is): Ship(is), cruise_state((Cruise_state)read_int(is)), cruise_speed(read_double(is)) {
+    string line;
+    is >> line;
+    if (line == "init_island") {
+        init_island = read_island_ptr(is);
+    }
+    int list_size = read_int(is);
+    while (list_size--) {
+        unvisited_island.push_back(read_island_ptr(is));
+    }
+    
+}
 
 // perform Cruise_ship specific behavior
 void Cruise_ship::update() {
@@ -97,6 +110,21 @@ void Cruise_ship::set_course_and_speed(double course, double speed) {
 void Cruise_ship::stop() {
     cancel_cruise();
     Ship::stop();
+}
+
+// Save the current state to os
+void Cruise_ship::save(std::ostream &os) const {
+    os << "Cruise_ship" << endl;
+    Ship::save(os);
+    os << (int)cruise_state << " " << cruise_speed << " " << endl;
+    if (init_island.use_count()) {
+        os << "init_island" << endl << init_island->get_name() << endl;
+    } else {
+        os << "no island ptr" << endl;
+    }
+    os << unvisited_island.size() << endl;
+    std::for_each(unvisited_island.begin(), unvisited_island.end(), [&os](const std::shared_ptr<Island>& island_ptr){os << island_ptr->get_name() << " ";});
+    os << endl;
 }
 
 // Discard te cruise information and output a message

@@ -33,6 +33,17 @@ Sim_object(name_), track_base(position_), fuel(fuel_capacity_),
 fuel_consumption(fuel_consumption_), fuel_capacity(fuel_capacity_),
 maximum_speed(maximum_speed_), resistance(resistance_), ship_state(Ship_state::stopped) {}
 
+Ship::Ship(std::istream& is): Sim_object(is), track_base(read_point(is), Course_speed(read_double(is), read_double(is)), read_double(is)), fuel(read_double(is)),fuel_consumption(read_double(is)), fuel_capacity(read_double(is)), maximum_speed(read_double(is)), resistance(read_double(is)), ship_state((Ship_state)read_int(is)),destination_point(read_point(is)) {
+    string line;
+    is >> line;
+    if (line == "destination_island") {        destination_Island = read_island_ptr(is);
+        is >> line;
+    }
+    if (line == "docked_island") {
+        docked_Island = read_island_ptr(is);
+    }
+}
+
 /*** Readers ***/
 
 // Return true if ship can move (it is not dead in the water or in the process or sinking);
@@ -202,6 +213,41 @@ void Ship::attack(shared_ptr<Ship> in_target_ptr) {
 void Ship::stop_attack() {
     throw Not_have_ability("Cannot attack!");
 }
+
+void Ship::save(std::ostream& os) const {
+    Sim_object::save(os);
+    os << track_base.get_position() << endl;
+    os << track_base.get_course() << " " << track_base.get_speed() << " " << track_base.get_altitude() << endl;
+    os << fuel << " " << fuel_consumption << " " << fuel_capacity << " " << maximum_speed << " " << resistance << " " << (int)ship_state << endl;
+    os << destination_point << " " << endl;
+    if (destination_Island.use_count()) {
+        os << "destination_island " << destination_Island->get_name() << endl;
+    }
+    if (docked_Island.use_count()) {
+        os << "docked_island " << docked_Island->get_name() << endl;
+    }
+    if (!destination_Island.use_count() && !docked_Island.use_count()) {
+        os << "no_island_ptr" << endl;
+    }
+}
+
+// copy assignment
+Ship& Ship::operator= (const Ship& in_ship) {
+    if(&in_ship == this)
+        return *this;
+    track_base = in_ship.track_base;
+    fuel = in_ship.fuel;
+    fuel_consumption = in_ship.fuel_consumption;
+    fuel_capacity = in_ship.fuel_capacity;
+    maximum_speed = in_ship.maximum_speed;
+    resistance = in_ship.resistance;
+    ship_state = in_ship.ship_state;
+    destination_point = in_ship.destination_point;
+    destination_Island = in_ship.destination_Island;
+    docked_Island = in_ship.docked_Island;
+    return *this;
+}
+
 
 /* interactions with other objects. Receive a hit from an attacker */
 void Ship::receive_hit(int hit_force, shared_ptr<Ship> attacker_ptr) {

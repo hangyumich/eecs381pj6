@@ -5,11 +5,13 @@ object's name, and has pure virtual accessor functions for the object's position
 and other information. */
 
 #include <string>
+#include <iosfwd>
 struct Point;
 
 class Sim_object {
 public:
     Sim_object(const std::string& name_);
+    Sim_object(std::istream&);
     
     virtual ~Sim_object() {}
 	
@@ -22,6 +24,7 @@ public:
     virtual Point get_location() const = 0;
     virtual void describe() const = 0;
     virtual void update() = 0;
+    virtual void save(std::ostream &) const;
 	
 	// Sim_objects must be unique, so disable copy/move construction, assignment
     // of base class; this will disable these operations for derived classes also.

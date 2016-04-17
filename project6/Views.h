@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <iosfwd>
 
 struct Point;
 
@@ -22,9 +23,11 @@ public:
     
     // draw the grid map
     void draw() const override;
+    void save(std::ostream& os) const override;
     
 protected:
     Grid_view(int size_, double scale_, Point origin_);
+    Grid_view(std::istream &);
     
     /* Getter and Setter */
     int get_size() const { return size; }
@@ -60,7 +63,7 @@ private:
 class Bridge_view : public Grid_view {
 public:
     Bridge_view(const std::string& name);
-    
+    Bridge_view(std::istream & os);
     // update heading if the name is the bridge view name
     void update_course(const std::string& name, double course) override;
     
@@ -70,6 +73,10 @@ public:
     // Update view to sunk view.
     void update_remove(const std::string& name) override;
     
+    // Save the current view status to os
+    void save(std::ostream& os) const override;
+    
+    std::string get_ship_name() const {return ship_name;}
 private:
     /* Helper Function */
     void print_map_info(std::vector<std::string> outsider) const override;
@@ -95,6 +102,7 @@ class Map_view : public Grid_view {
 public:
     // default constructor sets the default size, scale, and origin
     Map_view();
+    Map_view(std::istream &);
     
     // modify the display parameters
     // if the size is out of bounds will throw Error("New map size is too big!")
@@ -110,6 +118,10 @@ public:
     // set the parameters to the default values
     void set_defaults();
     
+    // Save the current view status to os
+    void save(std::ostream& os) const override;
+    
+    
 private:
     /* Helper Function */
     void print_map_info(std::vector<std::string> outsider) const override;
@@ -122,13 +134,18 @@ private:
  ****************************************************************** */
 
 struct Data {
+    Data(double fuel_=0, double course_=0, double speed_=0): fuel(fuel_), course(course_), speed(speed_) {}
     double fuel;
     double course;
     double speed;
 };
 
+std::ostream& operator<< (std::ostream&, const Data&);
+
 class Sailing_view : public View {
 public:
+    Sailing_view() {}
+    Sailing_view(std::istream& is);
     
     // prints out textual information about all ships
     void draw() const override;
@@ -144,6 +161,9 @@ public:
     
     // Save the supplied name and speed for future use in a draw() call
     void update_speed(const std::string& name, double speed) override;
+    
+    // Save the current view status to os
+    void save(std::ostream& os) const override;
     
 private:
     std::map<std::string, Data> memory;

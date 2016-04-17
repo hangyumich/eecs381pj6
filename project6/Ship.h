@@ -106,10 +106,16 @@ public:
     // will always throw Error("Cannot attack!");
     void stop_attack() override;
     
+    // save ship status to os
+    void save(std::ostream&) const override;
+    
+    Ship& operator= (const Ship&);
+    
 protected:
     // Make constructor protected so that client cannot create this object.
     Ship(const std::string& name_, Point position_, double fuel_capacity_,
          double maximum_speed_, double fuel_consumption_, int resistance_);
+    Ship(std::istream &);
     
     double get_maximum_speed() const
     {return maximum_speed;}

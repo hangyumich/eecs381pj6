@@ -2,6 +2,7 @@
 #define SHIP_FACTORY_H
 
 #include <string>
+#include <iosfwd>
 #include <memory>
 
 struct Point;
@@ -14,6 +15,7 @@ with new, so some other component is resposible for deleting it.
 
 // may throw Error("Trying to create ship of unknown type!")
 std::shared_ptr<Ship> create_ship(const std::string& name, const std::string& type,
-                              Point initial_position);
+                                  Point initial_position);
 
+std::shared_ptr<Ship> restore_ship(std::istream&);
 #endif

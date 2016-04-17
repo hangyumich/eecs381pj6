@@ -1,5 +1,6 @@
 #include "Island.h"
 #include "Model.h"
+#include "Utility.h"
 
 #include <iostream>
 
@@ -10,7 +11,13 @@ Island::Island (const std::string& name_, Point position_,
                 double fuel_, double production_rate_) :
 Sim_object(name_), position(position_), fuel(fuel_), production_rate(production_rate_) {}
 
-/* if production_rate > 0, compute production_rate * unit time, and add to amount, 
+Island::Island(std::istream& is): Sim_object(is){
+    position = read_point(is);
+    fuel = read_double(is);
+    production_rate = read_double(is);
+}
+
+/* if production_rate > 0, compute production_rate * unit time, and add to amount,
  and print an update message */
 void Island::update() {
     if (production_rate > 0) {
@@ -46,4 +53,9 @@ double Island::provide_fuel(double request) {
 void Island::accept_fuel(double amount) {
     fuel += amount;
     cout << "Island " << get_name() << " now has " << fuel << " tons" << endl;
+}
+
+void Island::save(std::ostream & os) const {
+    Sim_object::save(os);
+    os << position << " "  << fuel << " " << production_rate << endl;
 }

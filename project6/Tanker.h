@@ -21,6 +21,7 @@ enum class Tanker_state;
 class Tanker : public Ship {
 public:
 	Tanker(const std::string& name_, Point position_);
+    Tanker(std::istream &);
 	
 	// This class overrides these Ship functions so that it can check if this Tanker has assigned cargo destinations.
 	// if so, throw an Error("Tanker has cargo destinations!"); otherwise, simply call the Ship functions.
@@ -42,6 +43,7 @@ public:
 	// perform Tanker-specific behavior
 	void update() override;
 	void describe() const override;
+    void save(std::ostream&) const override;
 private:
     double cargo;
     double cargo_capacity;

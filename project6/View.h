@@ -5,6 +5,7 @@
 
 #include <map>
 #include <string>
+#include <iosfwd>
 
 /* *** View class ***
  View class is the base class for all other view classes.
@@ -33,6 +34,9 @@ public:
 	
 	// prints out the current map
 	virtual void draw() const = 0;
+    
+    // Save current view status to so
+    virtual void save(std::ostream&) const {};
 };
 
 #endif

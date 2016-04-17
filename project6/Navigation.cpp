@@ -56,8 +56,7 @@ Compass_position::Compass_position(const Point& p1, const Point& p2)
 	Polar_vector pv (p1, p2);
 	bearing = to_other_degrees(to_degrees(pv.theta));
 	range = pv.r;
-}
-	
+}	
 
 // *** Compass_vector members ***
 

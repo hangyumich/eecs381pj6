@@ -17,12 +17,35 @@ using std::string;
 using std::vector;
 using std::floor;
 
+/*
+ Utility function used for restore function
+ */
+bool read_bool(std::istream& is) {
+    bool bool_;
+    is >> bool_;
+    if (!is.good()) {
+        throw Error("Cannot read in a bool");
+    }
+    return bool_;
+}
 
 /* ****************** Grid View Implementation *********************
  ****************************************************************** */
 
 Grid_view::Grid_view(int size_, double scale_, Point origin_) :
 size(size_), scale(scale_), origin(origin_) {}
+
+Grid_view::Grid_view(std::istream & is) :
+size(read_int(is)), scale(read_double(is)), origin(read_point(is))
+{
+    // read the size, then put in key and value
+    int memory_size = read_int(is);
+    while (memory_size--) {
+        std::string key;
+        is >> key;
+        memory[key] = read_point(is);
+    }
+}
 
 /* Save the supplied name and location for future use in a draw() call
  If the name is already present,the new location replaces the previous one. */
@@ -66,6 +89,14 @@ void Grid_view::draw() const {
     }
     cout << endl;
 }
+
+// save view status to os
+void Grid_view::save(std::ostream& os) const {
+    os << size << " " << scale << " " << origin << endl;
+    os << memory.size() << endl;
+    std::for_each(memory.begin(), memory.end(), [&os](const std::pair<const std::string, Point>& pair){os << pair.first << " " << pair.second << endl;});
+}
+
 
 
 /* Calculate the cell subscripts corresponding to the supplied location parameter,
@@ -139,6 +170,14 @@ void Grid_view::print_label(int index , const string& axis) const {
 Bridge_view::Bridge_view(const string& name) :
 Grid_view(19, 10., Point{-90., 0}), ship_name(name){}
 
+Bridge_view::Bridge_view(std::istream & is) :
+Grid_view(is) {
+    is >> ship_name;
+    ship_location = read_point(is);
+    ship_heading = read_double(is);
+    is_sunk = read_bool(is);
+}
+
 // update the course if name is the bridge view name
 void Bridge_view::update_course(const string& name, double course) {
     if (name == ship_name)
@@ -158,6 +197,14 @@ void Bridge_view::update_remove(const string& name) {
     if (name == ship_name)
         is_sunk = true;
 }
+
+// Save the state to os
+void Bridge_view::save(std::ostream &os) const {
+    os << "Bridge_view" << endl;
+    Grid_view::save(os);
+    os << ship_name << " " << ship_location << " " << ship_heading << " " << is_sunk << endl;
+}
+
 
 // Print size, scale, and origin
 void Bridge_view::print_map_info(vector<string> outsider) const {
@@ -208,6 +255,9 @@ void Bridge_view::update_map(vector<vector<string>>& grid_map,
 Map_view::Map_view() :
 Grid_view(25, 2.0, Point(-10., -10.)){}
 
+Map_view::Map_view(std::istream & is) : Grid_view(is) {}
+
+
 void Map_view::set_size(int size_) {
     if (size_ <= 6)
         throw Error("New map size is too small!");
@@ -230,6 +280,12 @@ void Map_view::set_defaults() {
     Grid_view::set_size(25);
     Grid_view::set_scale(2.0);
     Grid_view::set_origin(Point(-10., -10.));
+}
+
+// save view state to os
+void Map_view::save(std::ostream &os) const {
+    os << "Map_view" << endl;
+    Grid_view::save(os);
 }
 
 // print out the text info before the real grid map.
@@ -265,6 +321,22 @@ vector<vector<string>> Map_view::get_initial_map() const {
 /* ****************** Sailing View Implementation *********************
  ****************************************************************** */
 
+// override output operator for Data
+std::ostream& operator<< (std::ostream& os, const Data& data) {
+    os << data.fuel << " " << data.course << " " << data.speed;
+    return os;
+}
+
+// istream ctor for sailing view
+Sailing_view::Sailing_view(std::istream& is) {
+    int memory_size = read_int(is);
+    while (memory_size--) {
+        string key;
+        is >> key;
+        memory[key] = Data(read_double(is), read_double(is), read_double(is));
+    }
+}
+
 // prints out textual information about all ships
 void Sailing_view::draw() const {
     cout << "----- Sailing Data -----" << endl;
@@ -297,5 +369,9 @@ void Sailing_view::update_speed(const std::string& name, double speed) {
     memory[name].speed = speed;
 }
 
-
-
+void Sailing_view::save(std::ostream &os) const{
+    os << "Sailing_view" << endl;
+    os << memory.size() << endl;
+    std::for_each(memory.begin(), memory.end(), [&os](const std::pair<const std::string, Data>& pair){os << pair.first << " " << pair.second << endl;});
+    
+}

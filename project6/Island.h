@@ -15,6 +15,7 @@ public:
 	Island (const std::string& name_, Point position_, double fuel_ = 0.,
             double production_rate_ = 0.);
 		
+    Island(std::istream &);
 	Point get_location() const override
 		{return position;}
 
@@ -35,6 +36,7 @@ public:
 	// Add the amount to the amount on hand, and output the total as the amount the Island now has.
 	void accept_fuel(double amount);
 	
+    void save(std::ostream&) const override;
 private:
 	Point position;				// Location of this island
     double fuel;

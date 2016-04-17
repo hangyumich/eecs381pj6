@@ -13,6 +13,7 @@ class Cruise_ship : public Ship {
 public:
     // initialize, then output constructor message
     Cruise_ship(const std::string& name_, Point position_);
+    Cruise_ship(std::istream&);
     
     // perform Cruise_ship specific behavior
     void update() override;
@@ -31,6 +32,7 @@ public:
     
     // Cancel the current cruise and perform the ship specific behaviors
     void stop() override;
+    void save(std::ostream &) const override;
     
 private:
     Cruise_state cruise_state;

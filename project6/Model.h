@@ -5,8 +5,9 @@
 
 #include <set>
 #include <map>
-#include <forward_list>
+#include <list>
 #include <string>
+#include <iosfwd>
 #include <memory>
 
 /*
@@ -52,6 +53,8 @@ public:
 	bool is_island_present(const std::string& name) const;
 	// will throw Error("Island not found!") if no island of that name
     std::shared_ptr<Island> get_island_ptr(const std::string& name) const;
+    // return the views list
+    std::list<std::shared_ptr<View>> get_views() const {return views;}
     
     // return all islands pointers.
     const std::set<std::shared_ptr<Island>, Comp>& get_all_islands() const
@@ -98,6 +101,15 @@ public:
     // get the singleton model object
     static Model& get_instance();
     
+    // save model data to a file
+    void save(std::ostream&);
+    
+    // restore model from a file
+    void restore(std::istream&);
+    
+    // reset the model to init state
+    void reset();
+    
 	// disallow copy/move construction or assignment
     Model(const Model& other) = delete;
     Model(Model&& other) = delete;
@@ -111,7 +123,7 @@ private:
     std::map<std::string, std::shared_ptr<Sim_object>> objects;
     std::set<std::shared_ptr<Island>, Comp> islands;
     std::set<std::shared_ptr<Ship>, Comp> ships;
-    std::forward_list<std::shared_ptr<View>> views;
+    std::list<std::shared_ptr<View>> views;
 };
 
 #endif

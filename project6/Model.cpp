@@ -20,6 +20,7 @@ using std::shared_ptr;
 using std::make_shared;
 using std::map;
 using std::true_type;
+using namespace std::placeholders;
 
 
 // create the initial objects, output constructor message
@@ -100,7 +101,7 @@ void Model::update() {
 /* Attaching a View adds it to the container and causes it to be updated
  with all current objects'location (or other state information. */
 void Model::attach(shared_ptr<View> view) {
-    views.push_front(view);
+    views.push_back(view);
     for (const auto& object : objects)
         object.second->broadcast_current_state();
 }
@@ -153,4 +154,36 @@ Model& Model::get_instance() {
     return model;
 }
 
+void Model::save(std::ostream& os) {
+    os << time << endl;
+    os << islands.size() << endl;
+    std::for_each(islands.begin(), islands.end(), std::bind(&Island::save, _1, std::ref(os)));
+    os << ships.size() << endl;
+    std::for_each(ships.begin(), ships.end(), std::bind(&Ship::save, _1, std::ref(os)));
+}
 
+void Model::restore(std::istream& is) {
+    time = read_int(is);
+    int islands_size = read_int(is);
+    while (islands_size--) {
+        std::shared_ptr<Island> island_ptr(new Island(is));
+        islands.insert(island_ptr);
+        objects[island_ptr->get_name()] = island_ptr;
+    }
+    int ship_size = read_int(is);
+    while (ship_size--) {
+        std::shared_ptr<Ship> ship_ptr = restore_ship(is);
+        if (!get_instance().is_ship_present(ship_ptr->get_name())) {
+            ships.insert(ship_ptr);
+            objects[ship_ptr->get_name()] = ship_ptr;
+        }
+    }
+}
+
+void Model::reset() {
+    get_instance().time = 0;
+    get_instance().objects = std::map<std::string, std::shared_ptr<Sim_object>> ();
+    get_instance().islands = std::set<std::shared_ptr<Island>, Comp> ();
+    get_instance().ships =  std::set<std::shared_ptr<Ship>, Comp>();
+    get_instance().views = std::list<std::shared_ptr<View>> ();
+}

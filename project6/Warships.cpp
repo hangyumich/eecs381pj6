@@ -2,11 +2,13 @@
 #include "Utility.h"
 #include "Model.h"
 #include "Island.h"
+#include "Ship_factory.h"
 
 #include <iostream>
 #include <memory>
 #include <cassert>
 #include <limits>
+#include <typeinfo>
 
 using std::cout;
 using std::endl;
@@ -23,6 +25,20 @@ Warships::Warships(const std::string& name_, Point position_, double fuel_capaci
 Ship(name_, position_, fuel_capacity_, maximum_speed_, fuel_consumption_, resistance_),
 firepower(firepower_), max_attack_range(max_attack_range_)
 {}
+Warships::Warships(std::istream& is): Ship(is), firepower(read_double(is)), max_attack_range(read_double(is)), attacking(read_int(is)) {
+    std::string str;
+    is >> str;
+    if (str == "target") {
+        std::string ship_type, ship_name;
+        is >> ship_type >> ship_name;
+        try {
+            target = Model::get_instance().get_ship_ptr(ship_name);
+        } catch (Error& e) {
+            target = create_ship(ship_name, ship_type.substr(1), Point(0, 0));
+            Model::get_instance().add_ship(target.lock());
+        }
+    }
+}
 
 void Warships::describe() const {
     Ship::describe();
@@ -78,6 +94,16 @@ void Warships::update() {
     
 }
 
+void Warships::save(std::ostream& os) const {
+    Ship::save(os);
+    os << firepower << " " << max_attack_range << " " << attacking << endl;
+    if (target.expired()) {
+        os << "no_taget" << endl;
+    }else{
+        os << "target " << typeid(target.lock()).name()
+        <<" "<<target.lock()->get_name() << endl;
+    }
+}
 
 /* ** Cruiser Ship Implementation **
  ********************************** */
@@ -85,6 +111,8 @@ void Warships::update() {
 Cruiser::Cruiser(const std::string& name_, Point position_) :
 Warships(name_, position_, 1000., 20., 10., 6., 3, 15)
 {}
+
+Cruiser::Cruiser(std::istream& is): Warships(is) {}
 
 void Cruiser::describe() const {
     cout << "\nCruiser ";
@@ -105,6 +133,10 @@ void Cruiser::receive_hit(int hit_force, shared_ptr<Ship> attacker_ptr) {
 }
 
 
+void Cruiser::save(std::ostream& os) const {
+    os << "Cruiser" << endl;
+    Warships::save(os);
+}
 
 
 /* ** Torpedo Ship Implementation **
@@ -118,6 +150,8 @@ void Torpedo_boat::describe() const {
     cout << "\nTorpedo_boat ";
     Warships::describe();
 }
+
+Torpedo_boat::Torpedo_boat(std::istream& is): Warships(is) {}
 
 // Torpedo boat will keep chasing target if target is out of range
 void Torpedo_boat::target_out_of_range(shared_ptr<Ship> target) {
@@ -133,6 +167,11 @@ void Torpedo_boat::receive_hit(int hit_force, shared_ptr<Ship> attacker_ptr) {
     if (is_attacking())
         stop_attack();
     set_destination_island_and_speed(find_refuge_island(attacker_ptr), get_maximum_speed());
+}
+
+void Torpedo_boat::save(std::ostream& os)const {
+    os << "Torpedo_boat" << endl;
+    Warships::save(os);
 }
 
 /* Find the nearest island to the attacker with range more than 15 nm. If not found

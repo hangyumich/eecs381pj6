@@ -4,6 +4,7 @@
 #include "Tanker.h"
 #include "Cruise_ship.h"
 #include "Utility.h"
+#include "Model.h"
 
 #include <memory>
 using std::shared_ptr;
@@ -24,4 +25,23 @@ shared_ptr<Ship> create_ship(const std::string& name, const std::string& type,
         return shared_ptr<Ship>(new Torpedo_boat(name, initial_position));
     else
         throw Error("Trying to create ship of unknown type!");
+}
+
+shared_ptr<Ship> restore_ship(std::istream& is) {
+    std::string type;
+    is >> type;
+    shared_ptr<Ship> new_ship;
+    if (type == "Cruiser") {
+        new_ship = shared_ptr<Ship>(new Cruiser(is));
+    } else if (type == "Tanker") {
+        new_ship = shared_ptr<Ship>(new Tanker(is));
+    } else if (type == "Cruise_ship") {
+        new_ship = shared_ptr<Ship>(new Cruise_ship(is));
+    } else if (type == "Torpedo_boat") {
+        new_ship = shared_ptr<Ship>(new Torpedo_boat(is));
+    }
+    if (Model::get_instance().is_ship_present(new_ship->get_name())) {
+        *(Model::get_instance().get_ship_ptr(new_ship->get_name())) = *new_ship;
+    }
+    return new_ship;
 }

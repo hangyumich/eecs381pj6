@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include <list>
+#include <iosfwd>
 
 /* Controller
 This class is responsible for controlling the Model and View according to interactions
@@ -26,7 +27,6 @@ public:
 private:
 	// Controller keeps its own pointer to the View because it has to manage the View.
 	// Future versions will need to manage more than one view.
-    std::list<std::shared_ptr<View>> views;
     std::shared_ptr<Map_view> map_view;
     std::shared_ptr<Sailing_view> sailing_view;
     std::map<std::string, std::shared_ptr<Bridge_view>> bridge_views;
@@ -55,12 +55,14 @@ private:
     void status_cmd();
     void go_cmd();
     void create_cmd();
+    void save_cmd();
+    void restore_cmd();
     
     /* Group Command Function */
-    void create_group_cmd();
-    void delete_group_cmd();
-    void add_member_cmd();
-    void delete_member_cmd();
+    void create_group_cmd() {}
+    void delete_group_cmd() {}
+    void add_member_cmd() {}
+    void delete_member_cmd() {}
     
     /* Ship Command Function */
     void course_cmd(std::shared_ptr<Ship>);
@@ -78,6 +80,8 @@ private:
     std::shared_ptr<Island> read_and_get_island();
     double read_speed();
     double read_double();
+    template <typename T>
+    T read_open_file(std::istream &);
 };
 	
 #endif

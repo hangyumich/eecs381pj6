@@ -1,6 +1,7 @@
 #include "Tanker.h"
 #include "Island.h"
 #include "Utility.h"
+#include "Model.h"
 
 #include <iostream>
 #include <memory>
@@ -17,6 +18,18 @@ enum class Tanker_state {no_cargo_destinations, moving_to_loading, unloading,
 Tanker:: Tanker(const std::string& name_, Point position_) :
 Ship(name_, position_, 100., 10., 2., 0.), cargo(0), cargo_capacity(1000.),
 tanker_state(Tanker_state::no_cargo_destinations) {}
+
+Tanker::Tanker(std::istream& is): Ship(is), cargo(read_double(is)), cargo_capacity(read_double(is)), tanker_state((Tanker_state) read_int(is)) {
+    std::string str;
+    is >> str;
+    if (str == "load_destination") {
+        load_destination = read_island_ptr(is);
+        is >> str;
+    }
+    if (str == "unload_destination") {
+        unload_destination = read_island_ptr(is);
+    }
+}
 
 // If Tanker has assigned cargo destinations, throw Error.
 void Tanker::set_destination_position_and_speed(Point destination_point, double speed) {
@@ -168,4 +181,17 @@ void Tanker::describe() const {
         cout << ", moving to unloading destination" << endl;
 }
 
+void Tanker::save(std::ostream & os) const{
+    os << "Tanker" << endl;
+    Ship::save(os);
+    os << cargo << " " << cargo_capacity << " " << (int) tanker_state << endl;
+    if (load_destination.use_count()) {
+        os << "load_destination " << load_destination->get_name() << endl;
+    }
+    if (unload_destination.use_count()) {
+        os << "unload_destion " << unload_destination->get_name() << endl;
+    }
+    if (!load_destination.use_count() && !unload_destination.use_count())
+        os << "no_island_ptr"<< endl;
+}
 
