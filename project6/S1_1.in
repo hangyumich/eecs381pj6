@@ -1,0 +1,62 @@
+open_map_view open_sailing_view
+create re Refuel_ship 12 12 
+Ajax destination Treasure_Island 10
+Valdez destination Bermuda 10
+re destination Exxon 5
+Xerxes destination Treasure_Island 10
+show
+go
+go
+go
+go show
+Ajax destination Shell 10
+Valdez destination Exxon 10
+Xerxes destination Shell 10
+status
+go
+go
+go
+Valdez destination Bermuda 10
+go
+go
+Valdez destination Exxon 10
+go show
+status
+Ajax destination Exxon 10
+go show
+status
+Xerxes destination Bermuda 10
+go
+status
+go show
+go
+go
+go
+go
+go
+go
+go show
+go
+go show
+go
+go
+go show
+go
+go show
+go
+go
+go
+go show
+go show
+go show
+go
+go
+go show
+go
+go show
+go
+go
+status
+go show
+status
+quit

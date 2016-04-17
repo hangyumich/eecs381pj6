@@ -71,7 +71,11 @@ public:
     // return all islands pointers.
     const std::set<std::shared_ptr<Island>, Comp>& get_all_islands() const
     {return islands;}
-
+    
+    // return all ship pointers.
+    const std::set<std::shared_ptr<Ship>, Comp>& get_ships() const
+    {return ships;}
+    
 	// is there such an ship?
 	bool is_ship_present(const std::string& name) const;
 	// add a new ship to the list, and update the view

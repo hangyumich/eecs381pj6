@@ -1,0 +1,46 @@
+open_map_view open_gps_view Ajax
+show
+Ajax destination Bermuda 1
+gps_size Ajax 10
+show
+gps_zoom Ajax 3
+show
+open_gps_view Xerxes
+gps_default Ajax 
+show
+Ajax destination Shell 2
+gps_zoom Ajax 1
+show
+open_gps_view Valdez
+show
+Valdez destination Exxon 0.1
+gps_zoom Valdez 1
+show
+gps_zoom Ajax 4
+show
+close_gps_view Ajax
+show
+close_gps_view Valdez
+show
+open_gps_view Ajax
+open_gps_view Valdez
+create Oil_City Tanker -5 20
+Oil_City destination Shell 10
+Valdez load_at Exxon
+Valdez unload_at Bermuda
+Ajax course 180 20
+open_gps_view Xerxes
+Ajax destination Bermuda 5
+go
+show
+Ajax stop
+Ajax attack Xerxes
+go
+go
+go
+show
+go show
+go show status
+quit
+
+

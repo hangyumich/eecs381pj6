@@ -18,6 +18,7 @@ class Map_view;
 class Sailing_view;
 class Bridge_view;
 class Commandable;
+class GPS_view;
 
 class Controller {
 public:
@@ -31,7 +32,8 @@ private:
     std::shared_ptr<Map_view> map_view;
     std::shared_ptr<Sailing_view> sailing_view;
     std::map<std::string, std::shared_ptr<Bridge_view>> bridge_views;
-    
+    std::map<std::string, std::shared_ptr<GPS_view>> gps_views;
+
     template<typename T>
     T get_func_ptr(std::map<std::string, T> cmds, const std::string& cmd_word);
 
@@ -50,7 +52,12 @@ private:
     void open_bridge_view();
     void close_bridge_view();
     void check_map_is_open();
-    
+    void open_gps_view();
+    void close_gps_view();
+    void default_gps_cmd();
+    void size_gps_cmd();
+    void zoom_gps_cmd();
+    std::shared_ptr<GPS_view> get_open_gps_map();
     
     /* Model Command Function */
     void status_cmd();
