@@ -1,3 +1,6 @@
+#ifndef COMMANDABLE_H
+#define COMMANDABLE_H
+
 #include <memory>
 
 /* This is an abstract interface class supposed to be inherited by
@@ -5,11 +8,13 @@
  one unit */
 
 class Island;
-class Point;
+struct Point;
 class Ship;
 
 class Commandable {
 public:
+    virtual ~Commandable(){}
+    
     // Start moving on a course and speed
     virtual void set_course_and_speed(double course, double speed) = 0;
     
@@ -42,3 +47,5 @@ public:
     // let the unit stop attacking target
     virtual void stop_attack() = 0;
 };
+
+#endif

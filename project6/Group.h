@@ -1,7 +1,12 @@
+#ifndef GROUP_H
+#define GROUP_H
+
 #include "Commandable.h"
 
 #include <memory>
-#include <vector>
+#include <list>
+#include <string>
+#include <functional>
 
 /* Group consists of other ships and groups. It can be controlled by user as a
  single unit. Users can also add member to the group and delete members from
@@ -9,6 +14,20 @@
 
 class Group : public Commandable {
 public:
+    
+    /*********************** General Functions *********************************/
+    
+    Group(std::string name_):name(name_){}
+    
+    std::string get_name() const { return name; }
+    
+    void add_member(std::shared_ptr<Commandable> member);
+    
+    void delete_member(std::shared_ptr<Commandable> member);
+    
+    
+    /******************** Commandable Interface Override **********************/
+    
     // All members start moving on a course and speed
     void set_course_and_speed(double course, double speed) override;
     
@@ -45,6 +64,12 @@ public:
     ability, we just skip that ship */
     void stop_attack() override;
     
+    void control_members(std::function<void(std::shared_ptr<Commandable>)> control_func);
+    
+
 private:
-    std::vector<std::shared_ptr<Commandable>> members;
+    std::list<std::weak_ptr<Commandable>> members;
+    std::string name;
 };
+
+#endif

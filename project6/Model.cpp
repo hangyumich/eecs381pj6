@@ -4,6 +4,7 @@
 #include "Ship.h"
 #include "Ship_factory.h"
 #include "Utility.h"
+#include "Group.h"
 
 #include <type_traits>
 #include <algorithm>
@@ -22,6 +23,7 @@ using std::map;
 using std::true_type;
 using namespace std::placeholders;
 
+/*************************** General Functions ****************************/
 
 // create the initial objects, output constructor message
 Model::Model() : time(0) {
@@ -39,7 +41,16 @@ Model::Model() : time(0) {
         objects[ship->get_name()] = ship;
 }
 
-/* is name already in use for either ship or island? 
+// get the singleton model object
+Model& Model::get_instance() {
+    static Model model;
+    return model;
+}
+
+
+/*********************** Ship and Islands Functions **********************/
+
+/* is name already in use for either ship or island?
  either the identical name, or identical in first two characters counts as in-use */
 bool Model::is_name_in_use(const string& name) const {
     // Use first two characters to test lower bound
@@ -96,7 +107,39 @@ void Model::update() {
         object.second->update();
 }
 
-/* View services */
+/************************** Group Functions *******************************/
+
+/* Test whether the group name has already been used by other ships, islands
+ or other groups. */
+bool Model::is_group_name_valid(const string& group_name) const {
+    return objects.find(group_name) == objects.end() &&
+           groups.find(group_name) == groups.end();
+    
+}
+
+// Test wheter a group exists with given name.
+bool Model::is_group_present(const std::string& group_name) const {
+    return groups.find(group_name) != groups.end();
+}
+
+shared_ptr<Group> Model::get_group_ptr(const string& group_name) const {
+    auto iter = groups.find(group_name);
+    if (iter == groups.end())
+        throw Error("Group not found!");
+    return iter->second;
+}
+
+void Model::attach_group(shared_ptr<Group> group_ptr) {
+    groups[group_ptr->get_name()] = group_ptr;
+}
+
+void Model::detach_group(shared_ptr<Group> group_ptr) {
+    groups.erase(group_ptr->get_name());
+}
+
+
+
+/****************************** View Functions *****************************/
 
 /* Attaching a View adds it to the container and causes it to be updated
  with all current objects'location (or other state information. */
@@ -146,12 +189,6 @@ void Model::notify_course(const string& name, double course) {
 void Model::notify_speed(const std::string& name, double speed) {
     for (auto& view : views)
         view->update_speed(name, speed);
-}
-
-// get the singleton model object
-Model& Model::get_instance() {
-    static Model model;
-    return model;
 }
 
 void Model::save(std::ostream& os) {

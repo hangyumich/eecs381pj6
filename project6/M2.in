@@ -1,0 +1,28 @@
+open_sailing_view
+show
+create_group Ajax
+create_group group1
+add_member Ajax group_unknown
+add_member Ajax group1
+add_member Ajax group1
+add_member Valdez group1
+group1 load_at Exxon
+group1 attack Xerxes
+group1 course 100 2
+show
+create_group group2
+add_member Valdez group2
+add_member Xerxes group2
+group2 course 200 5
+show
+add_member group2 group1
+group1 course 150 3
+show
+delete_member Ajax group1
+delete_member Ajax group1
+group1 course 250 6
+show
+delete_group group2
+group1 course 300 4
+show
+quit
