@@ -70,7 +70,8 @@ void Controller::run() {
                 quit_cmd();
                 return;
             }
-            if (Model::get_instance().is_ship_present(first_word)) {
+            if (Model::get_instance().is_ship_present(first_word) ||
+                Model::get_instance().is_group_present(first_word)) {
                 string cmd_word;
                 cin >> cmd_word;
                 auto commandable_ptr = get_commandable_object(first_word);
@@ -221,12 +222,14 @@ void Controller::create_group_cmd() {
     if (!Model::get_instance().is_group_name_valid(group_name))
         throw Error("Group name is invalid!");
     Model::get_instance().attach_group(make_shared<Group>(group_name));
+    cout << "Group " << group_name << " created" << endl;
 }
 
 void Controller::delete_group_cmd() {
     string group_name = read_string();
     auto group_ptr = Model::get_instance().get_group_ptr(group_name);
     Model::get_instance().detach_group(group_ptr);
+    cout << "Group " << group_name << " deleted" << endl;
 }
 
 void Controller::add_member_cmd() {

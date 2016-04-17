@@ -1,0 +1,86 @@
+
+Time 0: Enter command: 
+Time 0: Enter command: ----- Sailing Data -----
+      Ship      Fuel    Course     Speed
+      Ajax   1000.00      0.00      0.00
+    Valdez    100.00      0.00      0.00
+    Xerxes   1000.00      0.00      0.00
+
+Time 0: Enter command: Group name is invalid!
+
+Time 0: Enter command: Group group1 created
+
+Time 0: Enter command: Group not found!
+
+Time 0: Enter command: Member has been added to group1
+
+Time 0: Enter command: A member with that name already exists
+
+Time 0: Enter command: Member has been added to group1
+
+Time 0: Enter command: Valdez will load at Exxon
+
+Time 0: Enter command: Ajax will attack Xerxes
+
+Time 0: Enter command: Ajax will sail on course 100.00 deg, speed 2.00 nm/hr
+Valdez will sail on course 100.00 deg, speed 2.00 nm/hr
+
+Time 0: Enter command: ----- Sailing Data -----
+      Ship      Fuel    Course     Speed
+      Ajax   1000.00    100.00      2.00
+    Valdez    100.00    100.00      2.00
+    Xerxes   1000.00      0.00      0.00
+
+Time 0: Enter command: Group group2 created
+
+Time 0: Enter command: Member has been added to group2
+
+Time 0: Enter command: Member has been added to group2
+
+Time 0: Enter command: Valdez will sail on course 200.00 deg, speed 5.00 nm/hr
+Xerxes will sail on course 200.00 deg, speed 5.00 nm/hr
+
+Time 0: Enter command: ----- Sailing Data -----
+      Ship      Fuel    Course     Speed
+      Ajax   1000.00    100.00      2.00
+    Valdez    100.00    200.00      5.00
+    Xerxes   1000.00    200.00      5.00
+
+Time 0: Enter command: Member has been added to group1
+
+Time 0: Enter command: Ajax will sail on course 150.00 deg, speed 3.00 nm/hr
+Valdez will sail on course 150.00 deg, speed 3.00 nm/hr
+Valdez will sail on course 150.00 deg, speed 3.00 nm/hr
+Xerxes will sail on course 150.00 deg, speed 3.00 nm/hr
+
+Time 0: Enter command: ----- Sailing Data -----
+      Ship      Fuel    Course     Speed
+      Ajax   1000.00    150.00      3.00
+    Valdez    100.00    150.00      3.00
+    Xerxes   1000.00    150.00      3.00
+
+Time 0: Enter command: Member has been removed from group1
+
+Time 0: Enter command: No member with that name exists in the group
+
+Time 0: Enter command: Valdez will sail on course 250.00 deg, speed 6.00 nm/hr
+Valdez will sail on course 250.00 deg, speed 6.00 nm/hr
+Xerxes will sail on course 250.00 deg, speed 6.00 nm/hr
+
+Time 0: Enter command: ----- Sailing Data -----
+      Ship      Fuel    Course     Speed
+      Ajax   1000.00    150.00      3.00
+    Valdez    100.00    250.00      6.00
+    Xerxes   1000.00    250.00      6.00
+
+Time 0: Enter command: Group group2 created
+
+Time 0: Enter command: Valdez will sail on course 300.00 deg, speed 4.00 nm/hr
+
+Time 0: Enter command: ----- Sailing Data -----
+      Ship      Fuel    Course     Speed
+      Ajax   1000.00    150.00      3.00
+    Valdez    100.00    300.00      4.00
+    Xerxes   1000.00    250.00      6.00
+
+Time 0: Enter command: Done

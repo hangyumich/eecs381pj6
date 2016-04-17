@@ -6,6 +6,7 @@
 #include <memory>
 #include <list>
 #include <string>
+#include <functional>
 
 /* Group consists of other ships and groups. It can be controlled by user as a
  single unit. Users can also add member to the group and delete members from
@@ -63,9 +64,11 @@ public:
     ability, we just skip that ship */
     void stop_attack() override;
     
+    void control_members(std::function<void(std::shared_ptr<Commandable>)> control_func);
+    
 
 private:
-    std::list<std::shared_ptr<Commandable>> members;
+    std::list<std::weak_ptr<Commandable>> members;
     std::string name;
 };
 
