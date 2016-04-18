@@ -127,7 +127,7 @@ void Cruise_ship::save(std::ostream &os) const {
     os << endl;
 }
 
-Cruise_ship& Cruise_ship::operator= (Cruise_ship& in_cruise) {
+Cruise_ship& Cruise_ship::operator= (const Cruise_ship& in_cruise) {
     Ship::operator=(in_cruise);
     cruise_state = in_cruise.cruise_state;
     cruise_speed = in_cruise.cruise_speed;

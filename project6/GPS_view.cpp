@@ -17,6 +17,8 @@ bool is_outside(Point location, double map_size);
 GPS_view::GPS_view(const std::string& name):
 Grid_view(25, 2.0, Point(-10., -10.)), ship_name(name){}
 
+GPS_view::GPS_view(std::istream& is):Grid_view(is), ship_name(read_string(is)), ship_location(read_point(is)), ship_heading(read_double(is)), is_sunk(read_int(is)) {}
+
 /* Setter function */
 void GPS_view::set_size(int size_) {
     if (size_ <= 6)
@@ -58,6 +60,12 @@ void GPS_view::update_remove(const string& name) {
     Grid_view::update_remove(name);
     if (name == ship_name)
         is_sunk = true;
+}
+
+void GPS_view::save(std::ostream & os) const {
+    os << "GPS_view" << endl;
+    Grid_view::save(os);
+    os << ship_name << " " << ship_location << " " << ship_heading << " " << is_sunk << endl;
 }
 
 // return an initialized grid map

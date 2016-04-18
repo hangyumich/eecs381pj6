@@ -11,6 +11,7 @@ class GPS_view : public Grid_view {
 public:
     // default constructor sets the default size, scale, and origin
     GPS_view(const std::string& name);
+    GPS_view(std::istream&);
     
     // modify the display parameters
     // if the size is out of bounds will throw Error("New map size is too big!")
@@ -34,6 +35,9 @@ public:
     // removes from view; if applies, update view to sunk view.
     void update_remove(const std::string& name) override;
     
+    void save(std::ostream &) const override;
+    
+    std::string get_ship_name() {return ship_name;}
 private:
     /* Helper Function */
     std::vector<std::vector<std::string>> get_initial_map() const override;

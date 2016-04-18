@@ -36,3 +36,10 @@ std::shared_ptr<Island> read_island_ptr(std::istream& is) {
     is >> ship_name;
     return Model::get_instance().get_island_ptr(ship_name);
 }
+
+
+std::string read_string(std::istream& is) {
+    std::string str;
+    is >> str;
+    return str;
+}

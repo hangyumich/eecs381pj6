@@ -34,7 +34,7 @@ public:
     void stop() override;
     void save(std::ostream &) const override;
     // Copy assignment
-    Cruise_ship& operator= (Cruise_ship&);
+    Cruise_ship& operator= (const Cruise_ship&);
     
 private:
     Cruise_state cruise_state;
