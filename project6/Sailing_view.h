@@ -12,11 +12,12 @@ struct Data {
     double course;
     double speed;
 };
+
 class Sailing_view : public View {
 public:
     Sailing_view() {}
     Sailing_view(std::istream& is);
-
+    
     // prints out textual information about all ships
     void draw() const override;
     

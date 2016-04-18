@@ -2,7 +2,6 @@
 #include "Geometry.h"
 #include "Navigation.h"
 #include "Utility.h"
-
 #include <iostream>
 #include <vector>
 

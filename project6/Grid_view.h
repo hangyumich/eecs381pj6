@@ -18,6 +18,7 @@ public:
     
     // draw the grid map
     void draw() const override;
+
     void save(std::ostream& os) const override;
 
 protected:

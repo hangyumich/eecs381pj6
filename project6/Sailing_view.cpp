@@ -63,4 +63,3 @@ void Sailing_view::save(std::ostream &os) const{
     
 }
 
-
