@@ -25,7 +25,6 @@
 		8BFD5D9E1CBFBBC80040EC2B /* Warships.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D8D1CBFBBC80040EC2B /* Warships.cpp */; };
 		8BFD5DA11CC15F120040EC2B /* Commandable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D9F1CC15F120040EC2B /* Commandable.cpp */; };
 		8BFD5DA71CC2DEDE0040EC2B /* Group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5DA61CC2DEDE0040EC2B /* Group.cpp */; };
-		EFED8BCB1CC31F9E005D22D3 /* Refuel_ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFED8BC91CC31F9E005D22D3 /* Refuel_ship.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -78,8 +77,6 @@
 		8BFD5DA01CC15F120040EC2B /* Commandable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commandable.h; sourceTree = "<group>"; };
 		8BFD5DA31CC166DD0040EC2B /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		8BFD5DA61CC2DEDE0040EC2B /* Group.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Group.cpp; sourceTree = "<group>"; };
-		EFED8BC91CC31F9E005D22D3 /* Refuel_ship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Refuel_ship.cpp; sourceTree = "<group>"; };
-		EFED8BCA1CC31F9E005D22D3 /* Refuel_ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Refuel_ship.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +112,6 @@
 				8BFD5D6F1CBFBBC80040EC2B /* Controller.cpp */,
 				8BFD5D701CBFBBC80040EC2B /* Controller.h */,
 				8BFD5D711CBFBBC80040EC2B /* Cruise_ship.cpp */,
-				EFED8BC91CC31F9E005D22D3 /* Refuel_ship.cpp */,
-				EFED8BCA1CC31F9E005D22D3 /* Refuel_ship.h */,
 				8BFD5D721CBFBBC80040EC2B /* Cruise_ship.h */,
 				8BFD5D731CBFBBC80040EC2B /* debug.sh */,
 				8BFD5D741CBFBBC80040EC2B /* Geometry.cpp */,
@@ -219,7 +214,6 @@
 				8BFD5D991CBFBBC80040EC2B /* Tanker.cpp in Sources */,
 				8BFD5D941CBFBBC80040EC2B /* Navigation.cpp in Sources */,
 				8BFD5D9D1CBFBBC80040EC2B /* Views.cpp in Sources */,
-				EFED8BCB1CC31F9E005D22D3 /* Refuel_ship.cpp in Sources */,
 				8BFD5DA11CC15F120040EC2B /* Commandable.cpp in Sources */,
 				8BFD5D951CBFBBC80040EC2B /* p6_main.cpp in Sources */,
 				8BFD5D9C1CBFBBC80040EC2B /* View.cpp in Sources */,

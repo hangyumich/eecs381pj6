@@ -205,7 +205,6 @@ void Controller::open_gps_view() {
         throw Error("GPS view is already open for that ship!");
     shared_ptr<GPS_view> gps_view = make_shared<GPS_view>(ship_name);
     gps_views[ship_name] = gps_view;
-    views.push_back(gps_view);
     Model::get_instance().attach(gps_view);
 }
 
@@ -216,7 +215,6 @@ void Controller::close_gps_view() {
     if (iter == gps_views.end())
         throw Error("GPS view for that ship is not open!");
     Model::get_instance().detach(iter->second);
-    views.remove(iter->second);
     gps_views.erase(iter);
 }
 
@@ -285,7 +283,7 @@ T Controller::read_open_file(std::istream& is) {
 
 void Controller::save_cmd() {
     std::ofstream os = read_open_file<std::ofstream>(cin);
-    os.precision(8);
+    os.precision(10);
     std::list<std::shared_ptr<View>> views = Model::get_instance().get_views();
     os << views.size() << endl;
     std::for_each(views.begin(), views.end(), std::bind(&View::save, _1, std::ref(os)));
@@ -321,8 +319,8 @@ void Controller::restore_cmd() {
         }
         Model::get_instance().restore(is);
         is.close();
-    } catch (Error& e) {
-        throw e;
+    } catch (...) {
+        throw Error("Invalid data found in file.");
     }
 }
 
