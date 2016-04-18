@@ -49,7 +49,10 @@ public:
 	// Return true if the ship is Stopped and the distance to the supplied island
 	// is less than or equal to 0.1 nm
     bool can_dock(std::shared_ptr<Island> island_ptr) const;
-	
+    
+    // Receives fuel of at most received amount. Returns actual amount used.
+    double receive_fuel(double received);
+
 	/*** Interface to derived classes ***/
 	// Update the state of the Ship
 	void update() override;

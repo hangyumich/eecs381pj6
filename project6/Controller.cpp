@@ -60,7 +60,12 @@ void Controller::run() {
         {"open_sailing_view", &Controller::open_sailing_view},
         {"close_sailing_view", &Controller::close_sailing_view},
         {"open_bridge_view", &Controller::open_bridge_view},
-        {"close_bridge_view", &Controller::close_bridge_view}
+        {"close_bridge_view", &Controller::close_bridge_view},
+        {"open_gps_view", &Controller::open_gps_view},
+        {"close_gps_view", &Controller::close_gps_view},
+        {"gps_default", &Controller::default_gps_cmd},
+        {"gps_size", &Controller::size_gps_cmd},
+        {"gps_zoom", &Controller::zoom_gps_cmd}
     };
     
     while (true) {
@@ -192,6 +197,56 @@ void Controller::close_bridge_view() {
     bridge_views.erase(iter);
 }
 
+void Controller::open_gps_view() {
+    string ship_name;
+    cin >> ship_name;
+    auto ship_ptr = Model::get_instance().get_ship_ptr(ship_name);
+    if (gps_views.find(ship_name) != gps_views.end())
+        throw Error("GPS view is already open for that ship!");
+    shared_ptr<GPS_view> gps_view = make_shared<GPS_view>(ship_name);
+    gps_views[ship_name] = gps_view;
+    views.push_back(gps_view);
+    Model::get_instance().attach(gps_view);
+}
+
+void Controller::close_gps_view() {
+    string ship_name;
+    cin >> ship_name;
+    auto iter = gps_views.find(ship_name);
+    if (iter == gps_views.end())
+        throw Error("GPS view for that ship is not open!");
+    Model::get_instance().detach(iter->second);
+    views.remove(iter->second);
+    gps_views.erase(iter);
+}
+
+void Controller::default_gps_cmd() {
+    get_open_gps_map()->set_defaults();
+}
+
+void Controller::size_gps_cmd() {
+    shared_ptr<GPS_view> gps_view = get_open_gps_map();
+    int new_size;
+    if(!(cin >> new_size))
+        throw Error("Expected an integer!");
+    gps_view->set_size(new_size);
+}
+
+void Controller::zoom_gps_cmd() {
+    shared_ptr<GPS_view> gps_view = get_open_gps_map();
+    double scale = read_double();
+    gps_view->set_scale(scale);
+}
+
+// throw an error if map is not open
+shared_ptr<GPS_view> Controller::get_open_gps_map() {
+    string ship_name;
+    cin >> ship_name;
+    auto iter = gps_views.find(ship_name);
+    if (iter == gps_views.end())
+        throw Error("GPS view for that ship is not open!");
+    return iter->second;
+}
 
 /* Model Commands */
 

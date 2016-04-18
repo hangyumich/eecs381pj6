@@ -3,6 +3,7 @@
 #include "Warships.h"
 #include "Tanker.h"
 #include "Cruise_ship.h"
+#include "Refuel_ship.h"
 #include "Utility.h"
 #include "Model.h"
 
@@ -23,6 +24,8 @@ shared_ptr<Ship> create_ship(const std::string& name, const std::string& type,
         return shared_ptr<Ship>(new Cruise_ship(name, initial_position));
     else if (type == "Torpedo_boat")
         return shared_ptr<Ship>(new Torpedo_boat(name, initial_position));
+    else if (type == "Refuel_ship")
+        return shared_ptr<Ship>(new Refuel_ship(name, initial_position));
     else
         throw Error("Trying to create ship of unknown type!");
 }

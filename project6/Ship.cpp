@@ -76,6 +76,15 @@ bool Ship::can_dock(shared_ptr<Island> island_ptr) const {
            cartesian_distance(get_location(), island_ptr->get_location()) <= 0.1;
 }
 
+// Receives fuel of at most received amount. Returns actual amount used.
+double Ship::receive_fuel(double received) {
+    double actual = (fuel + received > fuel_capacity) ? (fuel_capacity - fuel) : (received);
+    fuel += actual;
+    Model::get_instance().notify_fuel(get_name(), fuel);
+    ship_state = Ship_state::stopped;
+    return actual;
+}
+
 /*** Interface to derived classes ***/
 
 // output a description of current state to cout
