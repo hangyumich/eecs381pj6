@@ -3,6 +3,8 @@
 #define REFUEL_SHIP_H
 
 #include "Ship.h"
+
+#include <iosfwd>
 #include <string>
 #include <memory>
 
@@ -12,6 +14,7 @@ class Refuel_ship : public Ship {
 public:
     // initialize, then output constructor message
     Refuel_ship(const std::string& name_, Point position_);
+    Refuel_ship(std::istream&);
     
     // perform Refuel_ship specific behavior
     void update() override;
@@ -30,13 +33,14 @@ public:
     
     // stops and forgets Refuel_ship specific information -> becomes not_refueling
     void stop() override;
+    void save(std::ostream &);
     
 private:
     Refuel_state refuel_state;
     double cargo;
     double cargo_capacity;
     std::shared_ptr<Island> base_island;
-    std::shared_ptr<Ship> target_ship; // ship to refuel
+    std::weak_ptr<Ship> target_ship; // ship to refuel
     
     /* Helper functions */
     void throw_if_in_cycle();

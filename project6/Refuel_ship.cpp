@@ -18,6 +18,10 @@ enum class Refuel_state { not_refueling, moving_to_start, load_refuel, waiting, 
 // initialize
 Refuel_ship::Refuel_ship(const std::string& name_, Point position_): Ship(name_, position_, 100, 5, 1., 0), refuel_state(Refuel_state::not_refueling), cargo(0), cargo_capacity(500) {}
 
+Refuel_ship::Refuel_ship(std::istream&) {
+    
+}
+
 // Perform Refuel_ship-specific behavior after ship update.
 void Refuel_ship::update() {
     Ship::update();
@@ -107,6 +111,19 @@ void Refuel_ship::stop() {
     base_island.reset();
     refuel_state = Refuel_state::not_refueling;
     cout << get_name() <<  " now not in refueling state" << endl;
+}
+
+// save ship status to os
+void Refuel_ship::save(std::ostream & os) {
+    os << "Refuel_ship" << endl;
+    Ship::save(os);
+    os << cargo << " " << cargo_capacity << " " << base_island->get_name() << endl;
+    if (target_ship.expired()) {
+        os << "no_taget" << endl;
+    }else{
+        os << "target_ship " << typeid(*target.lock()).name()
+        <<" "<<target.lock()->get_name() << endl;
+    }
 }
 
 // Throw error if Refuel_ship not not_refueling.
