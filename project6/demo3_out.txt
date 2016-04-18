@@ -73,7 +73,7 @@ Time 0: Enter command: ----- Sailing Data -----
     Valdez    100.00    250.00      6.00
     Xerxes   1000.00    250.00      6.00
 
-Time 0: Enter command: Group group2 created
+Time 0: Enter command: Group group2 deleted
 
 Time 0: Enter command: Valdez will sail on course 300.00 deg, speed 4.00 nm/hr
 
