@@ -47,19 +47,20 @@ shared_ptr<Ship> restore_ship(std::istream& is) {
     if (type == "Cruiser") {
         new_ship = shared_ptr<Ship>(new Cruiser(is));
         update_model_ship<Cruiser>(new_ship);
-        return new_ship;
     } else if (type == "Tanker") {
         new_ship = shared_ptr<Ship>(new Tanker(is));
         update_model_ship<Tanker>(new_ship);
-        return new_ship;
     } else if (type == "Cruise_ship") {
         new_ship = shared_ptr<Ship>(new Cruise_ship(is));
         update_model_ship<Cruise_ship>(new_ship);
-        return new_ship;
     } else if (type == "Torpedo_boat") {
         new_ship = shared_ptr<Ship>(new Torpedo_boat(is));
         update_model_ship<Torpedo_boat>(new_ship);
-        return new_ship;
+    } else if (type == "Refuel_ship") {
+        new_ship = shared_ptr<Ship>(new Refuel_ship(is));
+        update_model_ship<Refuel_ship>(new_ship);
+    } else {
+        throw Error("Trying to create ship of unknown type!");
     }
-    return nullptr;
+    return new_ship;
 }

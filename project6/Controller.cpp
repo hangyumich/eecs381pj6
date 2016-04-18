@@ -182,7 +182,7 @@ void Controller::close_sailing_view() {
 }
 
 void Controller::open_bridge_view() {
-    string ship_name = read_string();
+    string ship_name = read_string(cin);
     auto ship_ptr = Model::get_instance().get_ship_ptr(ship_name);
     if (bridge_views.find(ship_name) != bridge_views.end())
         throw Error("Bridge view is already open for that ship!");
@@ -192,7 +192,7 @@ void Controller::open_bridge_view() {
 }
 
 void Controller::close_bridge_view() {
-    string ship_name = read_string();
+    string ship_name = read_string(cin);
     auto iter = bridge_views.find(ship_name);
     if (iter == bridge_views.end())
         throw Error("Bridge view for that ship is not open!");
@@ -260,12 +260,12 @@ void Controller::go_cmd() {
 }
 
 void Controller::create_cmd() {
-    string ship_name = read_string();
+    string ship_name = read_string(cin);
     if (ship_name.length() < 2)
         throw Error("Name is too short!");
     if (Model::get_instance().is_name_in_use(ship_name))
         throw Error("Name is invalid!");
-    string ship_type = read_string();
+    string ship_type = read_string(cin);
     Point init_position{read_double(), read_double()};
     Model::get_instance().add_ship(create_ship(ship_name, ship_type, init_position));
 }
@@ -287,19 +287,13 @@ T Controller::read_open_file(std::istream& is) {
 void Controller::save_cmd() {
     std::ofstream os = read_open_file<std::ofstream>(cin);
     os.precision(10);
-    std::list<std::shared_ptr<View>> views = Model::get_instance().get_views();
-    os << views.size() << endl;
-    std::for_each(views.begin(), views.end(), std::bind(&View::save, _1, std::ref(os)));
     Model::get_instance().save(os);
     os.close();
 }
 
 
 void Controller::restore_cmd() {
-    map_view.reset();
-    sailing_view.reset();
-    bridge_views.clear();
-    Model::get_instance().reset();
+    reset();
     try {
         std::ifstream is = read_open_file<std::ifstream>(cin);
         int views_size = read_int(is);
@@ -316,6 +310,10 @@ void Controller::restore_cmd() {
             } else if (view_type == "Sailing_view") {
                 sailing_view = make_shared<Sailing_view>(Sailing_view(is));
                 Model::get_instance().attach(sailing_view);
+            } else if (view_type == "GPS_view") {
+                shared_ptr<GPS_view> gps_view = make_shared<GPS_view>(GPS_view(is));
+                gps_views[gps_view->get_ship_name()] = gps_view;
+                Model::get_instance().attach(gps_view);
             } else {
                 throw Error("Unknow view type");
             }
@@ -323,6 +321,7 @@ void Controller::restore_cmd() {
         Model::get_instance().restore(is);
         is.close();
     } catch (...) {
+        reset();
         throw Error("Invalid data found in file.");
     }
 }
@@ -330,7 +329,7 @@ void Controller::restore_cmd() {
 
 /* Group Commands */
 void Controller::create_group_cmd() {
-    string group_name = read_string();
+    string group_name = read_string(cin);
     if (!Model::get_instance().is_group_name_valid(group_name))
         throw Error("Group name is invalid!");
     Model::get_instance().attach_group(make_shared<Group>(group_name));
@@ -338,21 +337,21 @@ void Controller::create_group_cmd() {
 }
 
 void Controller::delete_group_cmd() {
-    string group_name = read_string();
+    string group_name = read_string(cin);
     auto group_ptr = Model::get_instance().get_group_ptr(group_name);
     Model::get_instance().detach_group(group_ptr);
     cout << "Group " << group_name << " deleted" << endl;
 }
 
 void Controller::add_member_cmd() {
-    shared_ptr<Commandable> member = get_commandable_object(read_string());
-    shared_ptr<Group> group_ptr = Model::get_instance().get_group_ptr(read_string());
+    shared_ptr<Commandable> member = get_commandable_object(read_string(cin));
+    shared_ptr<Group> group_ptr = Model::get_instance().get_group_ptr(read_string(cin));
     group_ptr->add_member(member);
 }
 
 void Controller::delete_member_cmd() {
-    shared_ptr<Commandable> member = get_commandable_object(read_string());
-    shared_ptr<Group> group_ptr = Model::get_instance().get_group_ptr(read_string());
+    shared_ptr<Commandable> member = get_commandable_object(read_string(cin));
+    shared_ptr<Group> group_ptr = Model::get_instance().get_group_ptr(read_string(cin));
     group_ptr->delete_member(member);
 }
 
@@ -422,12 +421,12 @@ void Controller::dock_at_cmd(shared_ptr<Commandable> commandable_ptr) {
 
 // Read Island name from cin and find the corresponding island pointer.
 shared_ptr<Island> Controller::read_and_get_island() {
-    string island_name = read_string();
+    string island_name = read_string(cin);
     return Model::get_instance().get_island_ptr(island_name);
 }
 
 void Controller::attack_cmd(shared_ptr<Commandable> commandable_ptr) {
-    string ship_name = read_string();
+    string ship_name = read_string(cin);
     shared_ptr<Ship> target_ship = Model::get_instance().get_ship_ptr(ship_name);
     commandable_ptr->attack(target_ship);
 }
@@ -444,9 +443,9 @@ void Controller::stop_attack_cmd(shared_ptr<Commandable> commandable_ptr) {
     commandable_ptr->stop_attack();
 }
 
-string Controller::read_string() {
-    string str;
-    cin >> str;
-    return str;
+void Controller::reset() {
+    map_view.reset();
+    sailing_view.reset();
+    bridge_views.clear();
+    Model::get_instance().reset();
 }
-

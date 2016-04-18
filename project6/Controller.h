@@ -89,9 +89,9 @@ private:
     std::shared_ptr<Island> read_and_get_island();
     double read_speed();
     double read_double();
-    std::string read_string();
     template <typename T>
     T read_open_file(std::istream &);
+    void reset();
 };
 	
 #endif

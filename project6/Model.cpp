@@ -192,6 +192,8 @@ void Model::notify_speed(const std::string& name, double speed) {
 }
 
 void Model::save(std::ostream& os) {
+    os << views.size() << endl;
+    std::for_each(views.begin(), views.end(), std::bind(&View::save, _1, std::ref(os)));
     os << time << endl;
     os << islands.size() << endl;
     std::for_each(islands.begin(), islands.end(), std::bind(&Island::save, _1, std::ref(os)));

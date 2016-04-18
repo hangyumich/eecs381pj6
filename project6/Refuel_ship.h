@@ -33,7 +33,8 @@ public:
     
     // stops and forgets Refuel_ship specific information -> becomes not_refueling
     void stop() override;
-    void save(std::ostream &);
+    void save(std::ostream &) const override;
+    Refuel_ship& operator= (const Refuel_ship&);
     
 private:
     Refuel_state refuel_state;

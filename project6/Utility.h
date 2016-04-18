@@ -34,4 +34,7 @@ Point read_point(std::istream& is);
 
 std::shared_ptr<Island> read_island_ptr(std::istream&);
 
+
+std::string read_string(std::istream&);
+
 #endif

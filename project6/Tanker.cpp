@@ -24,8 +24,8 @@ Tanker::Tanker(std::istream& is): Ship(is), cargo(read_double(is)), cargo_capaci
     is >> str;
     if (str == "load_destination") {
         load_destination = read_island_ptr(is);
-        is >> str;
     }
+    is >> str;
     if (str == "unload_destination") {
         unload_destination = read_island_ptr(is);
     }
