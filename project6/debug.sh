@@ -13,22 +13,10 @@ diff my.out views.out
 ./p6exe < torpedo.in > my.out
 diff my.out torpedo.out
 
-./p6exe < S1_1.in > my.out
+./p6exe < demo1_in.txt > my.out
 diff my.out S1_1.out
 
-./p6exe < S1_2.in > my.out
-diff my.out S1_2.out
-
-./p6exe < S1_3.in > my.out
-diff my.out S1_3.out
-
-./p6exe < S1_4.in > my.out
-diff my.out S1_4.out
-
-./p6exe < S1_5.in > my.out
-diff my.out S1_5.out
-
-./p6exe < S2_1.in > my.out
+./p6exe < demo2_in.txt > my.out
 diff my.out S2_1.out
 
 ./p6exe < S2_2.in > my.out

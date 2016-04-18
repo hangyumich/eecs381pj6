@@ -60,13 +60,16 @@ void Refuel_ship::update() {
     } else if (refuel_state == Refuel_state::waiting) {
         find_next_ship();
     } else if ( refuel_state == Refuel_state::moving_to_ship ) {
-        if (!is_moving() || target_ship.expired() ) { // too far
+        if ( target_ship.expired() )
+            refuel_state = Refuel_state::read_to_back;
+        else if (cartesian_distance(target_ship.lock()->get_location(), get_location()) < 0.005) { // close enough to refuel
+                refuel_state = Refuel_state::refuel_target;
+            }
+        else if (!is_moving()) { // too far
             // this can happen when some refuel_ship refueled the ship which moved afterwards
             // thus this refuel_ship will not meet the target ship and has to go back
             // if it realizes this is the situation by checking if has stopped but not close to target
             refuel_state = Refuel_state::read_to_back;
-        } else if (cartesian_distance(target_ship.lock()->get_location(), get_location()) < 0.005) { // close enough to refuel
-            refuel_state = Refuel_state::refuel_target;
         }
     } else if ( refuel_state == Refuel_state::refuel_target ) {
         if (!target_ship.expired()) {
@@ -76,7 +79,7 @@ void Refuel_ship::update() {
         }
         refuel_state = Refuel_state::read_to_back;
     } else if ( refuel_state == Refuel_state::read_to_back ) {
-        target_ship.lock().reset();
+        target_ship.reset();
         refuel_state = Refuel_state::moving_to_start;
         Ship::set_destination_island_and_speed(base_island, get_maximum_speed());
     }
@@ -101,7 +104,7 @@ void Refuel_ship::describe() const {
     } else if ( refuel_state == Refuel_state::refuel_target ) {
         if (!target_ship.expired()) {
             cout << "Refueling ship " << target_ship.lock()->get_name() << endl;
-        } {
+        } else {
             cout << "Refueling absent ship" << endl;
         }
     } else if ( refuel_state == Refuel_state::read_to_back ) {
@@ -118,7 +121,7 @@ void Refuel_ship::set_destination_position_and_speed(Point destination_point, do
 // Sets new base_island and starts entering refuel states
 void Refuel_ship::set_destination_island_and_speed(std::shared_ptr<Island> destination_island,
                                                    double speed) {
-    target_ship.lock().reset();
+    target_ship.reset();
     base_island = destination_island;
     refuel_state = Refuel_state::moving_to_start;
     Ship::set_destination_island_and_speed(destination_island, speed);
@@ -133,7 +136,7 @@ void Refuel_ship::set_course_and_speed(double course, double speed) {
 // Cancels current refuel cycle and perform the ship specific behaviors
 void Refuel_ship::stop() {
     Ship::stop();
-    target_ship.lock().reset();
+    target_ship.reset();
     base_island.reset();
     refuel_state = Refuel_state::not_refueling;
     cout << get_name() <<  " now not in refueling state" << endl;
@@ -151,7 +154,7 @@ void Refuel_ship::save(std::ostream & os) const {
     }
     if (target_ship.expired()) {
         os << "no_taget" << endl;
-    }else{
+    } else {
         os << "target_ship" << typeid(*target_ship.lock()).name()
         <<" "<<target_ship.lock()->get_name() << endl;
     }
@@ -191,7 +194,7 @@ void Refuel_ship::find_next_ship() {
     }
     if ( nearest ) { // is there is such a ship to refuel
         refuel_state = Refuel_state::moving_to_ship;
-        target_ship.lock() = nearest;
+        target_ship = nearest;
         Ship::set_destination_position_and_speed(nearest->get_location(), get_maximum_speed());
     }
 }

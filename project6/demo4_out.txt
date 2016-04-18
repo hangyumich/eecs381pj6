@@ -1,42 +1,65 @@
 
 Time 0: Enter command: 
 Time 0: Enter command: 
-Time 0: Enter command: Expected a double!
+Time 0: Enter command: Oil_City will sail on course 105.26 deg, speed 10.00 nm/hr to Treasure_Island
+
+Time 0: Enter command: Ajax will attack Xerxes
 
 Time 0: Enter command: Ajax stopped at (15.00, 15.00)
+Ajax is attacking
+Ajax fires
+Xerxes hit with 3, resistance now 3
+Xerxes will attack Ajax
 Island Exxon now has 1200.00 tons
-Oil_City stopped at (-5.00, 20.00)
+Oil_City now at (4.65, 17.37)
 Island Shell now has 1200.00 tons
 Island Treasure_Island now has 105.00 tons
 Valdez stopped at (30.00, 30.00)
 Xerxes stopped at (25.00, 25.00)
+Xerxes is attacking
+Xerxes fires
+Ajax hit with 3, resistance now 3
 re stopped at (25.00, 25.00)
 
-Time 1: Enter command: Xerxes will attack Ajax
+Time 1: Enter command: Already attacking this target!
 
 Time 1: Enter command: Ajax stopped at (15.00, 15.00)
+Ajax is attacking
+Ajax fires
+Xerxes hit with 3, resistance now 0
 Island Exxon now has 1400.00 tons
-Oil_City stopped at (-5.00, 20.00)
+Oil_City now at (14.30, 14.74)
 Island Shell now has 1400.00 tons
 Island Treasure_Island now has 110.00 tons
 Valdez stopped at (30.00, 30.00)
 Xerxes stopped at (25.00, 25.00)
 Xerxes is attacking
 Xerxes fires
-Ajax hit with 3, resistance now 3
-Ajax will attack Xerxes
+Ajax hit with 3, resistance now 0
 re stopped at (25.00, 25.00)
 
 Time 2: Enter command: Already attacking this target!
 
-Time 2: Enter command: Expected a double!
+Time 2: Enter command: Xerxes will sail on course 281.31 deg, speed 10.00 nm/hr to Shell
 
-Time 2: Enter command: 
-Time 2: Enter command: 
-Time 2: Enter command: 
-Time 2: Enter command: 
-Time 2: Enter command: 
-Time 2: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+Time 2: Enter command: Ajax stopped at (15.00, 15.00)
+Ajax is attacking
+Ajax fires
+Xerxes hit with 3, resistance now -3
+Xerxes sunk
+Island Exxon now has 1600.00 tons
+Oil_City now at (23.94, 12.11)
+Island Shell now has 1600.00 tons
+Island Treasure_Island now has 115.00 tons
+Valdez stopped at (30.00, 30.00)
+re stopped at (25.00, 25.00)
+
+Time 3: Enter command: 
+Time 3: Enter command: 
+Time 3: Enter command: 
+Time 3: Enter command: 
+Time 3: Enter command: 
+Time 3: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
 Treasure_Island outside the map
   38 . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -45,9 +68,138 @@ Treasure_Island outside the map
      . . . . . Sh. . . . . . . . . . . . . . Va. . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
   26 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . * . . . . . . . 
+     . . . . . . . . . . . . . . . . . re. . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
-  20 . . Oi. . . . . . . . . . . . Be. . . . . . . . . 
+  20 . . . . . . . . . . . . . . . Be. . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . Aj. . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . Oi. . . . . . . . 
+     . . . . . . . . . . Ex. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+----- Sailing Data -----
+      Ship      Fuel    Course     Speed
+      Ajax   1000.00      0.00      0.00
+  Oil_City     40.00    105.26     10.00
+    Valdez    100.00      0.00      0.00
+        re    100.00      0.00      0.00
+Bridge view from Ajax position (15.00, 15.00) heading 0.00
+     . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . * . . . . . 
+   -90   -60   -30     0    30    60    90
+Bridge view from Oil_City position (23.94, 12.11) heading 105.26
+     . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . 
+     Va. . . . . . . . . . . . . . . . . . 
+   -90   -60   -30     0    30    60    90
+GPS view from Ajax position (15.00, 15.00) heading 0.00
+Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
+  39                 . . . . . . . . . .               
+                 . . . . . . . . . . . . . .           
+               . . . . . . . . . . . . . . . .         
+  33         . . . . . . . . . . . . . . . . . .       
+           . . . . . . . . . . . . . . . . . . . .     
+         . . Sh. . . . . . . . . . . . . . Va. . . .   
+  27     . . . . . . . . . . . . . . . . . . . . . .   
+       . . . . . . . . . . . . . . . . re. . . . . . . 
+       . . . . . . . . . . . . . . . . . . . . . . . . 
+  21   . . . . . . . . . . . . . . . . . . . . . . . . 
+       . . . . . . . . . . . . . Be. . . . . . . . . . 
+       . . . . . . . . . . . . . . . . . . . . . . . . 
+  15   . . . . . . . . . . . Aj. . . . . . . . . . . . 
+       . . . . . . . . . . . . . . . . . . . . . . . . 
+       . . . . . . . . . . . . . . . Oi. . . . . . . . 
+   9   . . . . . . . . Ex. . . . . . . . . . . . . . . 
+       . . . . . . . . . . . . . . . . . . . . . . . . 
+         . . . . . . . . . . . . . . . . . . . . . .   
+   3     . . . . . . . . . . . . . . . . . . . . . .   
+           . . . . . . . . . . . . . . . . . . . .     
+             . . . . . . . . . . . . . . . . . .       
+  -3           . . . . . . . . . . . . . . . .         
+                 . . . . . . . . . . . . . .           
+                     . . . . . . . . . .               
+  -9                                                   
+    -9    -3     3     9    15    21    27    33    39
+
+Time 3: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 0
+Stopped
+Attacking absent ship
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1600.00 tons
+
+Tanker Oil_City at (23.94, 12.11), fuel: 40.00 tons, resistance: 0
+Moving to Treasure_Island on course 105.26 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, no cargo destinations
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1600.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 115.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Refuel_ship re at (25.00, 25.00), fuel: 100.00 tons, resistance: 0
+Stopped
+
+Time 3: Enter command: 
+Time 3: Enter command: Ajax stopped at (15.00, 15.00)
+Ajax stopping attack
+Island Exxon now has 1800.00 tons
+Oil_City now at (33.59, 9.48)
+Island Shell now has 1800.00 tons
+Island Treasure_Island now has 120.00 tons
+Valdez stopped at (30.00, 30.00)
+re stopped at (25.00, 25.00)
+
+Time 4: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2000.00 tons
+Oil_City now at (43.24, 6.84)
+Oil_City now has no cargo destinations
+Island Shell now has 2000.00 tons
+Island Treasure_Island now has 125.00 tons
+Valdez stopped at (30.00, 30.00)
+re stopped at (25.00, 25.00)
+
+Time 5: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2200.00 tons
+Oil_City dead in the water at (43.24, 6.84)
+Oil_City now has no cargo destinations
+Island Shell now has 2200.00 tons
+Island Treasure_Island now has 130.00 tons
+Valdez stopped at (30.00, 30.00)
+re stopped at (25.00, 25.00)
+
+Time 6: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+Oil_City, Treasure_Island outside the map
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Sh. . . . . . . . . . . . . . Va. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . re. . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . . . . Be. . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
   14 . . . . . . . . . . . . Aj. . . . . . . . . . . . 
@@ -67,19 +219,18 @@ Treasure_Island outside the map
 ----- Sailing Data -----
       Ship      Fuel    Course     Speed
       Ajax   1000.00      0.00      0.00
-  Oil_City    100.00      0.00      0.00
+  Oil_City      0.00    105.26      0.00
     Valdez    100.00      0.00      0.00
-    Xerxes   1000.00      0.00      0.00
         re    100.00      0.00      0.00
 Bridge view from Ajax position (15.00, 15.00) heading 0.00
      . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . * . . . . . 
    -90   -60   -30     0    30    60    90
-Bridge view from Oil_City position (-5.00, 20.00) heading 0.00
+Bridge view from Oil_City position (43.24, 6.84) heading 105.26
      . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . Sh. . . . . . . 
+     . . . . . . . . Tr. . . . . . . . . . 
    -90   -60   -30     0    30    60    90
 GPS view from Ajax position (15.00, 15.00) heading 0.00
 Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
@@ -90,10 +241,10 @@ Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
            . . . . . . . . . . . . . . . . . . . .     
          . . Sh. . . . . . . . . . . . . . Va. . . .   
   27     . . . . . . . . . . . . . . . . . . . . . .   
-       . . . . . . . . . . . . . . . . * . . . . . . . 
+       . . . . . . . . . . . . . . . . re. . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
   21   . . . . . . . . . . . . . . . . . . . . . . . . 
-       . Oi. . . . . . . . . . . Be. . . . . . . . . . 
+       . . . . . . . . . . . . . Be. . . . . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
   15   . . . . . . . . . . . Aj. . . . . . . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -110,80 +261,35 @@ Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
   -9                                                   
     -9    -3     3     9    15    21    27    33    39
 
-Time 2: Enter command: 
-Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 3
+Time 6: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 0
 Stopped
-Attacking Xerxes
 
 Island Bermuda at position (20.00, 20.00)
 Fuel available: 0.00 tons
 
 Island Exxon at position (10.00, 10.00)
-Fuel available: 1400.00 tons
+Fuel available: 2200.00 tons
 
-Tanker Oil_City at (-5.00, 20.00), fuel: 100.00 tons, resistance: 0
-Stopped
+Tanker Oil_City at (43.24, 6.84), fuel: 0.00 tons, resistance: 0
+Dead in the water
 Cargo: 0.00 tons, no cargo destinations
 
 Island Shell at position (0.00, 30.00)
-Fuel available: 1400.00 tons
+Fuel available: 2200.00 tons
 
 Island Treasure_Island at position (50.00, 5.00)
-Fuel available: 110.00 tons
+Fuel available: 130.00 tons
 
 Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
 Stopped
 Cargo: 0.00 tons, no cargo destinations
 
-Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
-Stopped
-Attacking Ajax
-
 Refuel_ship re at (25.00, 25.00), fuel: 100.00 tons, resistance: 0
 Stopped
 
-Time 2: Enter command: 
-Time 2: Enter command: Ajax stopped at (15.00, 15.00)
-Ajax is attacking
-Ajax fires
-Xerxes hit with 3, resistance now 3
-Island Exxon now has 1600.00 tons
-Oil_City stopped at (-5.00, 20.00)
-Island Shell now has 1600.00 tons
-Island Treasure_Island now has 115.00 tons
-Valdez stopped at (30.00, 30.00)
-Xerxes stopped at (25.00, 25.00)
-Xerxes is attacking
-Xerxes fires
-Ajax hit with 3, resistance now 0
-re stopped at (25.00, 25.00)
-
-Time 3: Enter command: Ajax stopped at (15.00, 15.00)
-Ajax is attacking
-Ajax fires
-Xerxes hit with 3, resistance now 0
-Island Exxon now has 1800.00 tons
-Oil_City stopped at (-5.00, 20.00)
-Island Shell now has 1800.00 tons
-Island Treasure_Island now has 120.00 tons
-Valdez stopped at (30.00, 30.00)
-Xerxes stopped at (25.00, 25.00)
-Xerxes is attacking
-Xerxes fires
-Ajax hit with 3, resistance now -3
-Ajax sunk
-re stopped at (25.00, 25.00)
-
-Time 4: Enter command: Island Exxon now has 2000.00 tons
-Oil_City stopped at (-5.00, 20.00)
-Island Shell now has 2000.00 tons
-Island Treasure_Island now has 125.00 tons
-Valdez stopped at (30.00, 30.00)
-Xerxes stopped at (25.00, 25.00)
-Xerxes stopping attack
-re stopped at (25.00, 25.00)
-
-Time 5: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+Time 6: Enter command: 
+Time 3: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
 Treasure_Island outside the map
   38 . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -192,13 +298,13 @@ Treasure_Island outside the map
      . . . . . Sh. . . . . . . . . . . . . . Va. . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
   26 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . * . . . . . . . 
+     . . . . . . . . . . . . . . . . . re. . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
-  20 . . Oi. . . . . . . . . . . . Be. . . . . . . . . 
+  20 . . . . . . . . . . . . . . . Be. . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
-  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . Aj. . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . Oi. . . . . . . . 
      . . . . . . . . . . Ex. . . . . . . . . . . . . . 
    8 . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -213,21 +319,21 @@ Treasure_Island outside the map
    -10    -4     2     8    14    20    26    32    38
 ----- Sailing Data -----
       Ship      Fuel    Course     Speed
-  Oil_City    100.00      0.00      0.00
+      Ajax   1000.00      0.00      0.00
+  Oil_City     40.00    105.26     10.00
     Valdez    100.00      0.00      0.00
-    Xerxes   1000.00      0.00      0.00
         re    100.00      0.00      0.00
-Bridge view from Ajax sunk at (15.00, 15.00)
-     w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-
-     w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-
-     w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-
-   -90   -60   -30     0    30    60    90
-Bridge view from Oil_City position (-5.00, 20.00) heading 0.00
+Bridge view from Ajax position (15.00, 15.00) heading 0.00
      . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . Sh. . . . . . . 
+     . . . . . . . . . . . . . * . . . . . 
    -90   -60   -30     0    30    60    90
-GPS view from Ajax sunk at (15.00, 15.00)
+Bridge view from Oil_City position (23.94, 12.11) heading 105.26
+     . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . 
+     Va. . . . . . . . . . . . . . . . . . 
+   -90   -60   -30     0    30    60    90
+GPS view from Ajax position (15.00, 15.00) heading 0.00
 Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
   39                 . . . . . . . . . .               
                  . . . . . . . . . . . . . .           
@@ -236,14 +342,14 @@ Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
            . . . . . . . . . . . . . . . . . . . .     
          . . Sh. . . . . . . . . . . . . . Va. . . .   
   27     . . . . . . . . . . . . . . . . . . . . . .   
-       . . . . . . . . . . . . . . . . * . . . . . . . 
+       . . . . . . . . . . . . . . . . re. . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
   21   . . . . . . . . . . . . . . . . . . . . . . . . 
-       . Oi. . . . . . . . . . . Be. . . . . . . . . . 
+       . . . . . . . . . . . . . Be. . . . . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
-  15   . . . . . . . . . . . . . . . . . . . . . . . . 
+  15   . . . . . . . . . . . Aj. . . . . . . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
-       . . . . . . . . . . . . . . . . . . . . . . . . 
+       . . . . . . . . . . . . . . . Oi. . . . . . . . 
    9   . . . . . . . . Ex. . . . . . . . . . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
          . . . . . . . . . . . . . . . . . . . . . .   
@@ -256,36 +362,63 @@ Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
   -9                                                   
     -9    -3     3     9    15    21    27    33    39
 
-Time 5: Enter command: 
+Time 3: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 0
+Stopped
+Attacking absent ship
+
 Island Bermuda at position (20.00, 20.00)
 Fuel available: 0.00 tons
 
 Island Exxon at position (10.00, 10.00)
-Fuel available: 2000.00 tons
+Fuel available: 1600.00 tons
 
-Tanker Oil_City at (-5.00, 20.00), fuel: 100.00 tons, resistance: 0
-Stopped
+Tanker Oil_City at (23.94, 12.11), fuel: 40.00 tons, resistance: 0
+Moving to Treasure_Island on course 105.26 deg, speed 10.00 nm/hr
 Cargo: 0.00 tons, no cargo destinations
 
 Island Shell at position (0.00, 30.00)
-Fuel available: 2000.00 tons
+Fuel available: 1600.00 tons
 
 Island Treasure_Island at position (50.00, 5.00)
-Fuel available: 125.00 tons
+Fuel available: 115.00 tons
 
 Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
 Stopped
 Cargo: 0.00 tons, no cargo destinations
 
-Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 0
-Stopped
-
 Refuel_ship re at (25.00, 25.00), fuel: 100.00 tons, resistance: 0
 Stopped
 
-Time 5: Enter command: 
-Time 2: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
-Treasure_Island outside the map
+Time 3: Enter command: Ajax stopped at (15.00, 15.00)
+Ajax stopping attack
+Island Exxon now has 1800.00 tons
+Oil_City now at (33.59, 9.48)
+Island Shell now has 1800.00 tons
+Island Treasure_Island now has 120.00 tons
+Valdez stopped at (30.00, 30.00)
+re stopped at (25.00, 25.00)
+
+Time 4: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2000.00 tons
+Oil_City now at (43.24, 6.84)
+Oil_City now has no cargo destinations
+Island Shell now has 2000.00 tons
+Island Treasure_Island now has 125.00 tons
+Valdez stopped at (30.00, 30.00)
+re stopped at (25.00, 25.00)
+
+Time 5: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2200.00 tons
+Oil_City dead in the water at (43.24, 6.84)
+Oil_City now has no cargo destinations
+Island Shell now has 2200.00 tons
+Island Treasure_Island now has 130.00 tons
+Valdez stopped at (30.00, 30.00)
+re stopped at (25.00, 25.00)
+
+Time 6: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+Oil_City, Treasure_Island outside the map
   38 . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -293,9 +426,9 @@ Treasure_Island outside the map
      . . . . . Sh. . . . . . . . . . . . . . Va. . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
   26 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . * . . . . . . . 
+     . . . . . . . . . . . . . . . . . re. . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
-  20 . . Oi. . . . . . . . . . . . Be. . . . . . . . . 
+  20 . . . . . . . . . . . . . . . Be. . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . . . . . . . 
   14 . . . . . . . . . . . . Aj. . . . . . . . . . . . 
@@ -315,19 +448,18 @@ Treasure_Island outside the map
 ----- Sailing Data -----
       Ship      Fuel    Course     Speed
       Ajax   1000.00      0.00      0.00
-  Oil_City    100.00      0.00      0.00
+  Oil_City      0.00    105.26      0.00
     Valdez    100.00      0.00      0.00
-    Xerxes   1000.00      0.00      0.00
         re    100.00      0.00      0.00
 Bridge view from Ajax position (15.00, 15.00) heading 0.00
      . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . * . . . . . 
    -90   -60   -30     0    30    60    90
-Bridge view from Oil_City position (-5.00, 20.00) heading 0.00
+Bridge view from Oil_City position (43.24, 6.84) heading 105.26
      . . . . . . . . . . . . . . . . . . . 
      . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . Sh. . . . . . . 
+     . . . . . . . . . Tr. . . . . . . . . 
    -90   -60   -30     0    30    60    90
 GPS view from Ajax position (15.00, 15.00) heading 0.00
 Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
@@ -338,10 +470,10 @@ Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
            . . . . . . . . . . . . . . . . . . . .     
          . . Sh. . . . . . . . . . . . . . Va. . . .   
   27     . . . . . . . . . . . . . . . . . . . . . .   
-       . . . . . . . . . . . . . . . . * . . . . . . . 
+       . . . . . . . . . . . . . . . . re. . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
   21   . . . . . . . . . . . . . . . . . . . . . . . . 
-       . Oi. . . . . . . . . . . Be. . . . . . . . . . 
+       . . . . . . . . . . . . . Be. . . . . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
   15   . . . . . . . . . . . Aj. . . . . . . . . . . . 
        . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -358,176 +490,31 @@ Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
   -9                                                   
     -9    -3     3     9    15    21    27    33    39
 
-Time 2: Enter command: 
-Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 3
+Time 6: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 0
 Stopped
-Attacking Xerxes
 
 Island Bermuda at position (20.00, 20.00)
 Fuel available: 0.00 tons
 
 Island Exxon at position (10.00, 10.00)
-Fuel available: 1400.00 tons
+Fuel available: 2200.00 tons
 
-Tanker Oil_City at (-5.00, 20.00), fuel: 100.00 tons, resistance: 0
-Stopped
+Tanker Oil_City at (43.24, 6.84), fuel: 0.00 tons, resistance: 0
+Dead in the water
 Cargo: 0.00 tons, no cargo destinations
 
 Island Shell at position (0.00, 30.00)
-Fuel available: 1400.00 tons
+Fuel available: 2200.00 tons
 
 Island Treasure_Island at position (50.00, 5.00)
-Fuel available: 110.00 tons
+Fuel available: 130.00 tons
 
 Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
 Stopped
 Cargo: 0.00 tons, no cargo destinations
 
-Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
-Stopped
-Attacking Ajax
-
 Refuel_ship re at (25.00, 25.00), fuel: 100.00 tons, resistance: 0
 Stopped
 
-Time 2: Enter command: Ajax stopped at (15.00, 15.00)
-Ajax is attacking
-Ajax fires
-Xerxes hit with 3, resistance now 3
-Island Exxon now has 1600.00 tons
-Oil_City stopped at (-5.00, 20.00)
-Island Shell now has 1600.00 tons
-Island Treasure_Island now has 115.00 tons
-Valdez stopped at (30.00, 30.00)
-Xerxes stopped at (25.00, 25.00)
-Xerxes is attacking
-Xerxes fires
-Ajax hit with 3, resistance now 0
-re stopped at (25.00, 25.00)
-
-Time 3: Enter command: Ajax stopped at (15.00, 15.00)
-Ajax is attacking
-Ajax fires
-Xerxes hit with 3, resistance now 0
-Island Exxon now has 1800.00 tons
-Oil_City stopped at (-5.00, 20.00)
-Island Shell now has 1800.00 tons
-Island Treasure_Island now has 120.00 tons
-Valdez stopped at (30.00, 30.00)
-Xerxes stopped at (25.00, 25.00)
-Xerxes is attacking
-Xerxes fires
-Ajax hit with 3, resistance now -3
-Ajax sunk
-re stopped at (25.00, 25.00)
-
-Time 4: Enter command: Island Exxon now has 2000.00 tons
-Oil_City stopped at (-5.00, 20.00)
-Island Shell now has 2000.00 tons
-Island Treasure_Island now has 125.00 tons
-Valdez stopped at (30.00, 30.00)
-Xerxes stopped at (25.00, 25.00)
-Xerxes stopping attack
-re stopped at (25.00, 25.00)
-
-Time 5: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
-Treasure_Island outside the map
-  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . Sh. . . . . . . . . . . . . . Va. . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . * . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-  20 . . Oi. . . . . . . . . . . . Be. . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . Ex. . . . . . . . . . . . . . 
-   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . . . . . . . 
- -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
-   -10    -4     2     8    14    20    26    32    38
------ Sailing Data -----
-      Ship      Fuel    Course     Speed
-  Oil_City    100.00      0.00      0.00
-    Valdez    100.00      0.00      0.00
-    Xerxes   1000.00      0.00      0.00
-        re    100.00      0.00      0.00
-Bridge view from Ajax sunk at (15.00, 15.00)
-     w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-
-     w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-
-     w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-w-
-   -90   -60   -30     0    30    60    90
-Bridge view from Oil_City position (-5.00, 20.00) heading 0.00
-     . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . . . . . . . . . 
-     . . . . . . . . . . . Sh. . . . . . . 
-   -90   -60   -30     0    30    60    90
-GPS view from Ajax sunk at (15.00, 15.00)
-Display size: 25, scale: 2.00, origin: (-9.00, -9.00)
-  39                 . . . . . . . . . .               
-                 . . . . . . . . . . . . . .           
-               . . . . . . . . . . . . . . . .         
-  33         . . . . . . . . . . . . . . . . . .       
-           . . . . . . . . . . . . . . . . . . . .     
-         . . Sh. . . . . . . . . . . . . . Va. . . .   
-  27     . . . . . . . . . . . . . . . . . . . . . .   
-       . . . . . . . . . . . . . . . . * . . . . . . . 
-       . . . . . . . . . . . . . . . . . . . . . . . . 
-  21   . . . . . . . . . . . . . . . . . . . . . . . . 
-       . Oi. . . . . . . . . . . Be. . . . . . . . . . 
-       . . . . . . . . . . . . . . . . . . . . . . . . 
-  15   . . . . . . . . . . . . . . . . . . . . . . . . 
-       . . . . . . . . . . . . . . . . . . . . . . . . 
-       . . . . . . . . . . . . . . . . . . . . . . . . 
-   9   . . . . . . . . Ex. . . . . . . . . . . . . . . 
-       . . . . . . . . . . . . . . . . . . . . . . . . 
-         . . . . . . . . . . . . . . . . . . . . . .   
-   3     . . . . . . . . . . . . . . . . . . . . . .   
-           . . . . . . . . . . . . . . . . . . . .     
-             . . . . . . . . . . . . . . . . . .       
-  -3           . . . . . . . . . . . . . . . .         
-                 . . . . . . . . . . . . . .           
-                     . . . . . . . . . .               
-  -9                                                   
-    -9    -3     3     9    15    21    27    33    39
-
-Time 5: Enter command: 
-Island Bermuda at position (20.00, 20.00)
-Fuel available: 0.00 tons
-
-Island Exxon at position (10.00, 10.00)
-Fuel available: 2000.00 tons
-
-Tanker Oil_City at (-5.00, 20.00), fuel: 100.00 tons, resistance: 0
-Stopped
-Cargo: 0.00 tons, no cargo destinations
-
-Island Shell at position (0.00, 30.00)
-Fuel available: 2000.00 tons
-
-Island Treasure_Island at position (50.00, 5.00)
-Fuel available: 125.00 tons
-
-Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
-Stopped
-Cargo: 0.00 tons, no cargo destinations
-
-Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 0
-Stopped
-
-Refuel_ship re at (25.00, 25.00), fuel: 100.00 tons, resistance: 0
-Stopped
-
-Time 5: Enter command: Done
+Time 6: Enter command: Done

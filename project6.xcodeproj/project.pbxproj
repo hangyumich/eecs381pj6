@@ -21,7 +21,7 @@
 		8BFD5D9A1CBFBBC80040EC2B /* Track_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D851CBFBBC80040EC2B /* Track_base.cpp */; };
 		8BFD5D9B1CBFBBC80040EC2B /* Utility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D871CBFBBC80040EC2B /* Utility.cpp */; };
 		8BFD5D9C1CBFBBC80040EC2B /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D891CBFBBC80040EC2B /* View.cpp */; };
-		8BFD5D9E1CBFBBC80040EC2B /* Warships.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D8D1CBFBBC80040EC2B /* Warships.cpp */; };
+		8BFD5D9E1CBFBBC80040EC2B /* Torpedo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D8D1CBFBBC80040EC2B /* Torpedo.cpp */; };
 		8BFD5DA11CC15F120040EC2B /* Commandable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5D9F1CC15F120040EC2B /* Commandable.cpp */; };
 		8BFD5DA71CC2DEDE0040EC2B /* Group.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8BFD5DA61CC2DEDE0040EC2B /* Group.cpp */; };
 		EFED8BCB1CC31F9E005D22D3 /* Refuel_ship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFED8BC91CC31F9E005D22D3 /* Refuel_ship.cpp */; };
@@ -30,6 +30,8 @@
 		EFED8BD51CC48EC4005D22D3 /* Bridge_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFED8BD31CC48EC4005D22D3 /* Bridge_view.cpp */; };
 		EFED8BD81CC48F35005D22D3 /* GPS_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFED8BD61CC48F35005D22D3 /* GPS_view.cpp */; };
 		EFED8BDB1CC48FE4005D22D3 /* Sailing_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFED8BD91CC48FE4005D22D3 /* Sailing_view.cpp */; };
+		EFED8BDE1CC4DADD005D22D3 /* Warship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFED8BDC1CC4DADD005D22D3 /* Warship.cpp */; };
+		EFED8BE11CC4DAEE005D22D3 /* Cruiser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EFED8BDF1CC4DAEE005D22D3 /* Cruiser.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,8 +76,8 @@
 		8BFD5D881CBFBBC80040EC2B /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		8BFD5D891CBFBBC80040EC2B /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = View.cpp; sourceTree = "<group>"; };
 		8BFD5D8A1CBFBBC80040EC2B /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
-		8BFD5D8D1CBFBBC80040EC2B /* Warships.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Warships.cpp; sourceTree = "<group>"; };
-		8BFD5D8E1CBFBBC80040EC2B /* Warships.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warships.h; sourceTree = "<group>"; };
+		8BFD5D8D1CBFBBC80040EC2B /* Torpedo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Torpedo.cpp; sourceTree = "<group>"; };
+		8BFD5D8E1CBFBBC80040EC2B /* Torpedo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Torpedo.h; sourceTree = "<group>"; };
 		8BFD5D9F1CC15F120040EC2B /* Commandable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Commandable.cpp; sourceTree = "<group>"; };
 		8BFD5DA01CC15F120040EC2B /* Commandable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Commandable.h; sourceTree = "<group>"; };
 		8BFD5DA31CC166DD0040EC2B /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
@@ -92,6 +94,10 @@
 		EFED8BD71CC48F35005D22D3 /* GPS_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPS_view.h; sourceTree = "<group>"; };
 		EFED8BD91CC48FE4005D22D3 /* Sailing_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sailing_view.cpp; sourceTree = "<group>"; };
 		EFED8BDA1CC48FE4005D22D3 /* Sailing_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sailing_view.h; sourceTree = "<group>"; };
+		EFED8BDC1CC4DADD005D22D3 /* Warship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Warship.cpp; sourceTree = "<group>"; };
+		EFED8BDD1CC4DADD005D22D3 /* Warship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warship.h; sourceTree = "<group>"; };
+		EFED8BDF1CC4DAEE005D22D3 /* Cruiser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cruiser.cpp; sourceTree = "<group>"; };
+		EFED8BE01CC4DAEE005D22D3 /* Cruiser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cruiser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,9 +133,9 @@
 				8BFD5D6F1CBFBBC80040EC2B /* Controller.cpp */,
 				8BFD5D701CBFBBC80040EC2B /* Controller.h */,
 				8BFD5D711CBFBBC80040EC2B /* Cruise_ship.cpp */,
+				8BFD5D721CBFBBC80040EC2B /* Cruise_ship.h */,
 				EFED8BC91CC31F9E005D22D3 /* Refuel_ship.cpp */,
 				EFED8BCA1CC31F9E005D22D3 /* Refuel_ship.h */,
-				8BFD5D721CBFBBC80040EC2B /* Cruise_ship.h */,
 				8BFD5D731CBFBBC80040EC2B /* debug.sh */,
 				8BFD5D741CBFBBC80040EC2B /* Geometry.cpp */,
 				8BFD5D751CBFBBC80040EC2B /* Geometry.h */,
@@ -154,8 +160,8 @@
 				8BFD5D881CBFBBC80040EC2B /* Utility.h */,
 				8BFD5D891CBFBBC80040EC2B /* View.cpp */,
 				8BFD5D8A1CBFBBC80040EC2B /* View.h */,
-				8BFD5D8D1CBFBBC80040EC2B /* Warships.cpp */,
-				8BFD5D8E1CBFBBC80040EC2B /* Warships.h */,
+				8BFD5D8D1CBFBBC80040EC2B /* Torpedo.cpp */,
+				8BFD5D8E1CBFBBC80040EC2B /* Torpedo.h */,
 				8BFD5D9F1CC15F120040EC2B /* Commandable.cpp */,
 				8BFD5DA01CC15F120040EC2B /* Commandable.h */,
 				8BFD5DA31CC166DD0040EC2B /* Group.h */,
@@ -170,6 +176,10 @@
 				EFED8BD41CC48EC4005D22D3 /* Bridge_view.h */,
 				EFED8BD91CC48FE4005D22D3 /* Sailing_view.cpp */,
 				EFED8BDA1CC48FE4005D22D3 /* Sailing_view.h */,
+				EFED8BDC1CC4DADD005D22D3 /* Warship.cpp */,
+				EFED8BDD1CC4DADD005D22D3 /* Warship.h */,
+				EFED8BDF1CC4DAEE005D22D3 /* Cruiser.cpp */,
+				EFED8BE01CC4DAEE005D22D3 /* Cruiser.h */,
 			);
 			path = project6;
 			sourceTree = "<group>";
@@ -232,18 +242,20 @@
 			files = (
 				8BFD5D9B1CBFBBC80040EC2B /* Utility.cpp in Sources */,
 				8BFD5DA71CC2DEDE0040EC2B /* Group.cpp in Sources */,
+				EFED8BDE1CC4DADD005D22D3 /* Warship.cpp in Sources */,
 				8BFD5D921CBFBBC80040EC2B /* Island.cpp in Sources */,
 				8BFD5D911CBFBBC80040EC2B /* Geometry.cpp in Sources */,
 				8BFD5D9A1CBFBBC80040EC2B /* Track_base.cpp in Sources */,
 				8BFD5D931CBFBBC80040EC2B /* Model.cpp in Sources */,
 				8BFD5D991CBFBBC80040EC2B /* Tanker.cpp in Sources */,
 				8BFD5D941CBFBBC80040EC2B /* Navigation.cpp in Sources */,
+				EFED8BE11CC4DAEE005D22D3 /* Cruiser.cpp in Sources */,
 				EFED8BCB1CC31F9E005D22D3 /* Refuel_ship.cpp in Sources */,
 				8BFD5DA11CC15F120040EC2B /* Commandable.cpp in Sources */,
 				EFED8BD51CC48EC4005D22D3 /* Bridge_view.cpp in Sources */,
 				8BFD5D951CBFBBC80040EC2B /* p6_main.cpp in Sources */,
 				8BFD5D9C1CBFBBC80040EC2B /* View.cpp in Sources */,
-				8BFD5D9E1CBFBBC80040EC2B /* Warships.cpp in Sources */,
+				8BFD5D9E1CBFBBC80040EC2B /* Torpedo.cpp in Sources */,
 				8BFD5D981CBFBBC80040EC2B /* Sim_object.cpp in Sources */,
 				8BFD5D961CBFBBC80040EC2B /* Ship_factory.cpp in Sources */,
 				8BFD5D901CBFBBC80040EC2B /* Cruise_ship.cpp in Sources */,
