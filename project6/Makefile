@@ -4,7 +4,7 @@ LD = g++
 CFLAGS = -c -pedantic-errors -std=c++14 -Wall -fno-elide-constructors -g
 LFLAGS = -pedantic-errors -Wall
 
-OBJS = p6_main.o Controller.o Island.o Ship.o Tanker.o View.o Views.o Cruise_ship.o Warships.o Model.o Ship_factory.o Track_base.o Geometry.o Navigation.o Sim_object.o Utility.o Group.o Commandable.o Refuel_ship.o
+OBJS = p6_main.o Controller.o Island.o Ship.o Tanker.o View.o Grid_view.o Map_view.o Bridge_view.o GPS_view.o Sailing_view.o Cruise_ship.o Warships.o Model.o Ship_factory.o Track_base.o Geometry.o Navigation.o Sim_object.o Utility.o Group.o Commandable.o Refuel_ship.o
 PROG = p6exe
 
 default: $(PROG)
@@ -30,8 +30,20 @@ Tanker.o: Tanker.cpp *.h
 View.o: View.cpp *.h
 	$(CC) $(CFLAGS) View.cpp
 
-Views.o: Views.cpp *.h
-	$(CC) $(CFLAGS) Views.cpp	
+Grid_view.o: Grid_view.cpp *.h
+	$(CC) $(CFLAGS) Grid_view.cpp
+
+Map_view.o: Map_view.cpp *.h
+	$(CC) $(CFLAGS) Map_view.cpp
+
+Bridge_view.o: Bridge_view.cpp *.h
+	$(CC) $(CFLAGS) Bridge_view.cpp
+
+GPS_view.o: GPS_view.cpp *.h
+	$(CC) $(CFLAGS) GPS_view.cpp
+
+Sailing_view.o: Sailing_view.cpp *.h
+	$(CC) $(CFLAGS) Sailing_view.cpp
 
 Warships.o: Warships.cpp *.h
 	$(CC) $(CFLAGS) Warships.cpp

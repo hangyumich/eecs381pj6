@@ -6,7 +6,10 @@
 #include "Model.h"
 #include "Ship.h"
 #include "Island.h"
-#include "Views.h"
+#include "Map_view.h"
+#include "Bridge_view.h"
+#include "GPS_view.h"
+#include "Sailing_view.h"
 #include "Group.h"
 
 #include <iostream>
