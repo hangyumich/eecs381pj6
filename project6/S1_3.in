@@ -1,0 +1,75 @@
+open_map_view open_sailing_view
+show
+create re Refuel_ship 12 12 
+create r2 Refuel_ship -60 -60
+r2 destination Shell 5
+Ajax destination Treasure_Island 10
+Valdez destination Bermuda 10
+re destination Exxon 5
+Xerxes destination Treasure_Island 10
+Ajax destination Shell 10
+Valdez destination Exxon 10
+Xerxes destination Shell 10
+status
+go show
+go show
+go show
+Valdez destination Bermuda 10
+go show
+go show
+Valdez destination Exxon 10
+go show
+status
+Ajax destination Exxon 10
+go show
+status
+Xerxes destination Shell 10
+go show
+status
+go show
+go show
+Ajax destination Shell 10
+go show
+go show
+go show
+go show
+
+Ajax destination Treasure_Island 10
+
+go show
+
+
+
+go show
+Ajax destination Shell 5
+
+go show
+go show
+go show
+go show
+go show
+go show
+go show
+
+go show
+go show
+go show
+go show
+
+go show
+go show
+go show go show
+go show
+go show
+go show
+go show
+go show
+status
+go show
+
+
+go go go go go
+
+quit
+
+// re first saves Ajax, and then r2

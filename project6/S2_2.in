@@ -1,0 +1,74 @@
+open_map_view open_gps_view Ajax
+show
+Ajax destination Bermuda 1
+create z1 Torpedo_boat 10 10
+create z2 Cruise_ship 9 9
+create z3 Tanker 8 8
+create z4 Cruiser 7 7
+create t2 Torpedo_boat 3 24
+create t3 Torpedo_boat 9.9 -1.
+create t4 Torpedo_boat 1 12
+create t5 Torpedo_boat 32 4
+create t6 Torpedo_boat 9 -1.2
+create t7 Torpedo_boat 1 12
+create t8 Torpedo_boat 32 34
+create t9 Torpedo_boat 12.9 -1.2
+create ta Torpedo_boat 4 12
+create tb Torpedo_boat 29 4
+create tc Torpedo_boat 9.9 1.2
+create td Torpedo_boat 4 21
+create te Torpedo_boat 4 5
+create tg Torpedo_boat 23 2
+create th Torpedo_boat 27 14
+create ti Torpedo_boat 19 1.2
+create tk Torpedo_boat 24 15
+create tl Torpedo_boat 19 -1.2
+create tm Torpedo_boat 17 0.2
+create to Torpedo_boat 14 -5
+create ts Torpedo_boat 14 26
+create tt Torpedo_boat 23 36
+create tx Torpedo_boat 2 34
+create tA Torpedo_boat 33 2
+create tB Torpedo_boat 7 24
+create tC Torpedo_boat 9 31.2
+create tD Torpedo_boat 34 -1
+create tE Torpedo_boat 31 5
+gps_size Ajax 10
+show
+close_map_view
+show
+
+status
+
+gps_zoom Ajax 3
+show
+Ajax destination Shell 2
+show
+close_map_view
+Ajax destination Exxon 2
+show
+Ajax destination Bermuda 2
+show
+
+gps_default Ajax 
+show
+Ajax destination Shell 2
+show
+close_map_view
+Ajax destination Exxon 2
+show
+Ajax destination Bermuda 2
+show
+Ajax course 0 2
+show
+Ajax course 30 2
+show
+Ajax course 60 2
+show
+Ajax course 61 2
+show
+Ajax course 62 2
+show
+open_map_view
+
+quit
