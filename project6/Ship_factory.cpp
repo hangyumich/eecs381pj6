@@ -1,6 +1,7 @@
 #include "Ship_factory.h"
 #include "Navigation.h"
-#include "Warships.h"
+#include "Torpedo.h"
+#include "Cruiser.h"
 #include "Tanker.h"
 #include "Cruise_ship.h"
 #include "Refuel_ship.h"
