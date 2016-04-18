@@ -109,7 +109,7 @@ public:
     // save ship status to os
     void save(std::ostream&) const override;
     
-    Ship& operator= (const Ship&);
+    virtual Ship& operator= (const Ship&);
     
 protected:
     // Make constructor protected so that client cannot create this object.

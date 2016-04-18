@@ -44,6 +44,7 @@ public:
 	void update() override;
 	void describe() const override;
     void save(std::ostream&) const override;
+    Tanker& operator= (const Tanker&);
 private:
     double cargo;
     double cargo_capacity;

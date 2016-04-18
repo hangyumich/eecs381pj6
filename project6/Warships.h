@@ -27,7 +27,8 @@ public:
     void stop_attack() override;
     
     void save(std::ostream&) const override;
-    
+
+    virtual Warships& operator= (const Warships&);
 protected:
     virtual void target_out_of_range(std::shared_ptr<Ship> target) = 0;
     

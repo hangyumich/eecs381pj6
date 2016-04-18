@@ -36,9 +36,10 @@ maximum_speed(maximum_speed_), resistance(resistance_), ship_state(Ship_state::s
 Ship::Ship(std::istream& is): Sim_object(is), track_base(read_point(is), Course_speed(read_double(is), read_double(is)), read_double(is)), fuel(read_double(is)),fuel_consumption(read_double(is)), fuel_capacity(read_double(is)), maximum_speed(read_double(is)), resistance(read_double(is)), ship_state((Ship_state)read_int(is)),destination_point(read_point(is)) {
     string line;
     is >> line;
-    if (line == "destination_island") {        destination_Island = read_island_ptr(is);
-        is >> line;
+    if (line == "destination_island") {
+        destination_Island = read_island_ptr(is);
     }
+    is >> line;
     if (line == "docked_island") {
         docked_Island = read_island_ptr(is);
     }
@@ -222,12 +223,13 @@ void Ship::save(std::ostream& os) const {
     os << destination_point << " " << endl;
     if (destination_Island.use_count()) {
         os << "destination_island " << destination_Island->get_name() << endl;
+    } else {
+        os << "no_destination_island" << endl;
     }
     if (docked_Island.use_count()) {
         os << "docked_island " << docked_Island->get_name() << endl;
-    }
-    if (!destination_Island.use_count() && !docked_Island.use_count()) {
-        os << "no_island_ptr" << endl;
+    } else {
+        os << "no_docked_island" << endl;
     }
 }
 

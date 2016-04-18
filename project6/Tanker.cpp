@@ -187,11 +187,27 @@ void Tanker::save(std::ostream & os) const{
     os << cargo << " " << cargo_capacity << " " << (int) tanker_state << endl;
     if (load_destination.use_count()) {
         os << "load_destination " << load_destination->get_name() << endl;
+    } else {
+        os << "no_load_destination" << endl;
     }
     if (unload_destination.use_count()) {
-        os << "unload_destion " << unload_destination->get_name() << endl;
+        os << "unload_destination " << unload_destination->get_name() << endl;
+    } else {
+        os << "no_unload_destination"<< endl;
     }
-    if (!load_destination.use_count() && !unload_destination.use_count())
-        os << "no_island_ptr"<< endl;
 }
+
+Tanker& Tanker::operator= (const Tanker& in_tanker) {
+    Ship::operator=(in_tanker);
+    cargo = in_tanker.cargo;
+    cargo_capacity = in_tanker.cargo_capacity;
+    tanker_state = in_tanker.tanker_state;
+    load_destination = in_tanker.load_destination;
+    unload_destination = in_tanker.unload_destination;
+    return *this;
+}
+
+
+
+
 

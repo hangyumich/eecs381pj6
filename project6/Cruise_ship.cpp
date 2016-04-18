@@ -127,6 +127,17 @@ void Cruise_ship::save(std::ostream &os) const {
     os << endl;
 }
 
+Cruise_ship& Cruise_ship::operator= (Cruise_ship& in_cruise) {
+    Ship::operator=(in_cruise);
+    cruise_state = in_cruise.cruise_state;
+    cruise_speed = in_cruise.cruise_speed;
+    init_island = in_cruise.init_island;
+    unvisited_island = in_cruise.unvisited_island;
+    return *this;
+    
+}
+
+
 // Discard te cruise information and output a message
 void Cruise_ship::cancel_cruise() {
     if (cruise_state == Cruise_state::not_cruising

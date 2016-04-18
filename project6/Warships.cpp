@@ -23,8 +23,8 @@ Warships::Warships(const std::string& name_, Point position_, double fuel_capaci
                  double maximum_speed_, double fuel_consumption_, int resistance_,
                  double firepower_, double max_attack_range_) :
 Ship(name_, position_, fuel_capacity_, maximum_speed_, fuel_consumption_, resistance_),
-firepower(firepower_), max_attack_range(max_attack_range_)
-{}
+firepower(firepower_), max_attack_range(max_attack_range_) {}
+
 Warships::Warships(std::istream& is): Ship(is), firepower(read_double(is)), max_attack_range(read_double(is)), attacking(read_int(is)) {
     std::string str;
     is >> str;
@@ -34,8 +34,9 @@ Warships::Warships(std::istream& is): Ship(is), firepower(read_double(is)), max_
         try {
             target = Model::get_instance().get_ship_ptr(ship_name);
         } catch (Error& e) {
-            target = create_ship(ship_name, ship_type.substr(1), Point(0, 0));
-            Model::get_instance().add_ship(target.lock());
+            shared_ptr<Ship> ship_ptr = create_ship(ship_name, ship_type.substr(1), Point(0, 0));
+            target = ship_ptr;
+            Model::get_instance().add_ship(ship_ptr);
         }
     }
 }
@@ -100,9 +101,18 @@ void Warships::save(std::ostream& os) const {
     if (target.expired()) {
         os << "no_taget" << endl;
     }else{
-        os << "target " << typeid(target.lock()).name()
+        os << "target " << typeid(*target.lock()).name()
         <<" "<<target.lock()->get_name() << endl;
     }
+}
+
+Warships& Warships::operator= (const Warships& in_warship) {
+    Ship::operator=(in_warship);
+    firepower = in_warship.firepower;
+    max_attack_range = in_warship.max_attack_range;
+    target = in_warship.target;
+    attacking = in_warship.attacking;
+    return *this;
 }
 
 /* ** Cruiser Ship Implementation **

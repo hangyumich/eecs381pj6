@@ -230,6 +230,7 @@ T Controller::read_open_file(std::istream& is) {
 
 void Controller::save_cmd() {
     std::ofstream os = read_open_file<std::ofstream>(cin);
+    os.precision(8);
     std::list<std::shared_ptr<View>> views = Model::get_instance().get_views();
     os << views.size() << endl;
     std::for_each(views.begin(), views.end(), std::bind(&View::save, _1, std::ref(os)));
@@ -237,10 +238,11 @@ void Controller::save_cmd() {
     os.close();
 }
 
+
 void Controller::restore_cmd() {
-    std::shared_ptr<Map_view> map_view_bc = std::move(map_view);
-    std::shared_ptr<Sailing_view> sailing_view_bc = std::move(sailing_view);
-    std::map<std::string, std::shared_ptr<Bridge_view>> bridge_views_bc = std::move(bridge_views);
+    map_view.reset();
+    sailing_view.reset();
+    bridge_views.clear();
     Model::get_instance().reset();
     try {
         std::ifstream is = read_open_file<std::ifstream>(cin);
@@ -253,7 +255,7 @@ void Controller::restore_cmd() {
                 Model::get_instance().attach(map_view);
             } else if (view_type == "Bridge_view") {
                 shared_ptr<Bridge_view> bridge_view = make_shared<Bridge_view>(Bridge_view(is));
-                bridge_views[bridge_view->get_ship_name()];
+                bridge_views[bridge_view->get_ship_name()] = bridge_view;
                 Model::get_instance().attach(bridge_view);
             } else if (view_type == "Sailing_view") {
                 sailing_view = make_shared<Sailing_view>(Sailing_view(is));
@@ -265,14 +267,6 @@ void Controller::restore_cmd() {
         Model::get_instance().restore(is);
         is.close();
     } catch (Error& e) {
-        map_view = map_view_bc;
-        Model::get_instance().attach(map_view);
-        sailing_view = sailing_view_bc;
-        Model::get_instance().attach(sailing_view);
-        bridge_views = bridge_views_bc;
-        std::for_each(bridge_views.begin(), bridge_views.end(),
-                      [](std::pair<const string, shared_ptr<Bridge_view>>& pair){
-                          Model::get_instance().attach(pair.second);});
         throw e;
     }
 }

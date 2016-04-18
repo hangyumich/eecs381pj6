@@ -24,9 +24,9 @@ double read_double(std::istream& is) {
 Point read_point(std::istream& is) {
     char unused;
     is >> unused;
-    int x = read_int(is);
+    double x = read_double(is);
     is >> unused;
-    int y = read_int(is);
+    double y = read_double(is);
     is >> unused;
     return Point(x, y);
 }

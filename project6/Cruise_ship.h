@@ -33,6 +33,8 @@ public:
     // Cancel the current cruise and perform the ship specific behaviors
     void stop() override;
     void save(std::ostream &) const override;
+    // Copy assignment
+    Cruise_ship& operator= (Cruise_ship&);
     
 private:
     Cruise_state cruise_state;
