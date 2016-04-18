@@ -11,7 +11,8 @@ class Map_view : public Grid_view {
 public:
     // default constructor sets the default size, scale, and origin
     Map_view();
-    
+    Map_view(std::istream &);
+
     // modify the display parameters
     // if the size is out of bounds will throw Error("New map size is too big!")
     // or Error("New map size is too small!")
@@ -25,6 +26,9 @@ public:
     
     // set the parameters to the default values
     void set_defaults();
+    
+    // Save the current view status to os
+    void save(std::ostream& os) const override;
     
 private:
     /* Helper Function */

@@ -18,9 +18,11 @@ public:
     
     // draw the grid map
     void draw() const override;
-    
+    void save(std::ostream& os) const override;
+
 protected:
     Grid_view(int size_, double scale_, Point origin_);
+    Grid_view(std::istream &);
     
     /* Getter and Setter */
     int get_size() const { return size; }

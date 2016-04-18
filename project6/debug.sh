@@ -1,5 +1,5 @@
-make real_clean
-make
+#make real_clean
+#make
 
 ./p6exe < status.in > my.out
 diff my.out status.out

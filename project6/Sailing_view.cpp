@@ -1,4 +1,5 @@
 #include "Sailing_view.h"
+#include "Utility.h"
 #include <iostream>
 #include <iomanip>
 
@@ -6,6 +7,22 @@ using std::setw;
 using std::cout;
 using std::endl;
 using std::string;
+
+// override output operator for Data
+std::ostream& operator<< (std::ostream& os, const Data& data) {
+    os << data.fuel << " " << data.course << " " << data.speed;
+    return os;
+}
+
+// istream ctor for sailing view
+Sailing_view::Sailing_view(std::istream& is) {
+    int memory_size = read_int(is);
+    while (memory_size--) {
+        string key;
+        is >> key;
+        memory[key] = Data(read_double(is), read_double(is), read_double(is));
+    }
+}
 
 // prints out textual information about all ships
 void Sailing_view::draw() const {
@@ -39,5 +56,11 @@ void Sailing_view::update_speed(const std::string& name, double speed) {
     memory[name].speed = speed;
 }
 
+void Sailing_view::save(std::ostream &os) const{
+    os << "Sailing_view" << endl;
+    os << memory.size() << endl;
+    std::for_each(memory.begin(), memory.end(), [&os](const std::pair<const std::string, Data>& pair){os << pair.first << " " << pair.second << endl;});
+    
+}
 
 

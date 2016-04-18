@@ -11,6 +11,8 @@ using std::vector;
 Map_view::Map_view() :
 Grid_view(25, 2.0, Point(-10., -10.)){}
 
+Map_view::Map_view(std::istream & is) : Grid_view(is) {}
+
 void Map_view::set_size(int size_) {
     if (size_ <= 6)
         throw Error("New map size is too small!");
@@ -50,6 +52,11 @@ Point Map_view::get_relative_location(Point location) const {
     return location;
 }
 
+// save view state to os
+void Map_view::save(std::ostream &os) const {
+    os << "Map_view" << endl;
+    Grid_view::save(os);
+}
 
 // return an initialized grid map
 vector<vector<string>> Map_view::get_initial_map() const {

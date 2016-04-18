@@ -1,6 +1,8 @@
 #include "Bridge_view.h"
 #include "Geometry.h"
 #include "Navigation.h"
+#include "Utility.h"
+
 #include <iostream>
 #include <vector>
 
@@ -11,6 +13,14 @@ using std::vector;
 
 Bridge_view::Bridge_view(const string& name) :
 Grid_view(19, 10., Point{-90., 0}), ship_name(name){}
+
+Bridge_view::Bridge_view(std::istream & is) :
+Grid_view(is) {
+    is >> ship_name;
+    ship_location = read_point(is);
+    ship_heading = read_double(is);
+    is_sunk = read_int(is);
+}
 
 // update the course if name is the bridge view name
 void Bridge_view::update_course(const string& name, double course) {
@@ -30,6 +40,13 @@ void Bridge_view::update_remove(const string& name) {
     Grid_view::update_remove(name);
     if (name == ship_name)
         is_sunk = true;
+}
+
+// Save the state to os
+void Bridge_view::save(std::ostream &os) const {
+    os << "Bridge_view" << endl;
+    Grid_view::save(os);
+    os << ship_name << " " << ship_location << " " << ship_heading << " " << is_sunk << endl;
 }
 
 // Print size, scale, and origin

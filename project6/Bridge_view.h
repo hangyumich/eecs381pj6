@@ -10,7 +10,8 @@ struct Point;
 class Bridge_view : public Grid_view {
 public:
     Bridge_view(const std::string& name);
-    
+    Bridge_view(std::istream & os);
+
     // update heading if the name is the bridge view name
     void update_course(const std::string& name, double course) override;
     
@@ -19,6 +20,11 @@ public:
     
     // Update view to sunk view.
     void update_remove(const std::string& name) override;
+   
+    // Save the current view status to os
+    void save(std::ostream& os) const override;
+    
+    std::string get_ship_name() const {return ship_name;}
     
 private:
     /* Helper Function */

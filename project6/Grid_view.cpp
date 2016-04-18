@@ -1,5 +1,6 @@
 #include "Grid_view.h"
 #include "Geometry.h"
+#include "Utility.h"
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -15,6 +16,18 @@ using std::floor;
 
 Grid_view::Grid_view(int size_, double scale_, Point origin_) :
 size(size_), scale(scale_), origin(origin_) {}
+
+Grid_view::Grid_view(std::istream & is) :
+size(read_int(is)), scale(read_double(is)), origin(read_point(is))
+{
+    // read the size, then put in key and value
+    int memory_size = read_int(is);
+    while (memory_size--) {
+        std::string key;
+        is >> key;
+        memory[key] = read_point(is);
+    }
+}
 
 /* Save the supplied name and location for future use in a draw() call
  If the name is already present,the new location replaces the previous one. */
@@ -59,6 +72,12 @@ void Grid_view::draw() const {
     cout << endl;
 }
 
+// save view status to os
+void Grid_view::save(std::ostream& os) const {
+    os << size << " " << scale << " " << origin << endl;
+    os << memory.size() << endl;
+    std::for_each(memory.begin(), memory.end(), [&os](const std::pair<const std::string, Point>& pair){os << pair.first << " " << pair.second << endl;});
+}
 
 /* Calculate the cell subscripts corresponding to the supplied location parameter,
  using the current size, scale, and origin of the display.
