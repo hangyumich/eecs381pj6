@@ -1,0 +1,32 @@
+create re Refuel_ship 25 25 
+create Oil_City Tanker -5 20
+Oil_City destination Treasure_Island 10
+Ajax attack Xerxes
+go
+Xerxes attack Ajax
+go
+Ajax attack Xerxes
+Xerxes destination Shell 10
+go
+open_map_view
+open_sailing_view
+open_bridge_view Ajax
+open_bridge_view Oil_City
+open_gps_view Ajax
+show
+status
+save savefile.txt
+go
+go
+go
+show
+status
+restore savefile.txt
+show
+status
+go
+go
+go
+show
+status
+quit
