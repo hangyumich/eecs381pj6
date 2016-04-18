@@ -2,7 +2,9 @@
 #include "Utility.h"
 #include <iostream>
 #include <iomanip>
+#include <algorithm>
 
+using std::for_each;
 using std::setw;
 using std::cout;
 using std::endl;

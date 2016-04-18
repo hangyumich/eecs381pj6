@@ -5,7 +5,9 @@
 #include <iomanip>
 #include <vector>
 #include <cmath>
+#include <algorithm>
 
+using std::for_each;
 using std::setprecision;
 using std::setw;
 using std::cout;

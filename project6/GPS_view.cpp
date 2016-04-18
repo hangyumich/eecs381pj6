@@ -71,8 +71,8 @@ void GPS_view::save(std::ostream & os) const {
 // return an initialized grid map
 vector<vector<string>> GPS_view::get_initial_map() const {
     vector<vector<string>> grid_map(get_size(), vector<string>(get_size(), ". "));
-    for ( int i = 0; i < grid_map.size(); i++ ) {
-        for ( int j = 0; j < grid_map.size(); j++ ) {
+    for ( unsigned i = 0; i < grid_map.size(); i++ ) {
+        for ( unsigned j = 0; j < grid_map.size(); j++ ) {
             if ( is_outside(Point(i,j), grid_map.size()) ) { // outside the circle
                 grid_map[i][j] = "  ";
             }
